@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+}
+
+/* 1. HIDE NATIVE CURSOR */
+html, body, button, .dot, .side-nav-btn, img, a {
+    cursor: none !important;
+}
+
+body { 
+    background: #000; 
+    overflow: hidden; 
+    height: 100vh; 
+    width: 100vw; 
+}
+
+/* 2. LIQUID GLASS CURSOR */
+.cursor-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10001;
+    pointer-events: none;
+}
+
+.liquid-cursor {
+    width: 25px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(8px) saturate(160%);
+    -webkit-backdrop-filter: blur(8px) saturate(160%);
+    box-shadow: 0 0 20px rgba(0, 102, 204, 0.2);
+    transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s;
+}
+
+.liquid-cursor.active {
+    width: 55px;
+    height: 55px;
+    background: rgba(0, 102, 204, 0.15);
+    border-color: rgba(0, 102, 204, 0.6);
+}
+
+/* 3. TOP NAVIGATION */
+.top-nav {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.about-trigger {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 25px;
+    border-radius: 50px;
+    color: white;
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 11px;
+    transition: background 0.3s;
+}
+
+.about-trigger:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 4. FROSTED BLUE NOTE */
+.glass-note {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    padding: 10px 22px;
+    z-index: 9999;
+    background: rgba(0, 80, 200, 0.3);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: liquidFloat 5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes liquidFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.02); }
+}
+
+/* 5. GLOBAL BACKGROUND & CLOUDS */
+#global-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; transition: opacity 0.5s; }
+.sky-img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Left to Right Clouds */
+.cloud { position: absolute; width: 300px; opacity: 0.5; animation: floatCloud linear infinite; }
+.c1 { top: 10%; left: -350px; animation-duration: 40s; }
+.c2 { top: 40%; left: -350px; animation-duration: 55s; }
+.c3 { top: 20%; left: -350px; animation-duration: 30s; filter: blur(4px); }
+.c4 { top: 70%; left: -350px; animation-duration: 45s; }
+
+/* Right to Left Clouds */
+.front-reverse .cloud { animation: floatCloudReverse linear infinite; left: auto; right: -350px; }
+.c5 { top: 15%; animation-duration: 50s; opacity: 0.3; }
+.c6 { top: 60%; animation-duration: 35s; opacity: 0.4; filter: blur(2px); }
+
+@keyframes floatCloud { from { transform: translateX(0); } to { transform: translateX(115vw); } }
+@keyframes floatCloudReverse { from { transform: translateX(0); } to { transform: translateX(-115vw); } }
+
+/* 6. PAGE SYSTEM */
+.page { position: fixed; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; visibility: hidden; }
+.page.active { opacity: 1; pointer-events: auto; visibility: visible; z-index: 10; }
+
+/* 7. LANDING PAGE */
+.glass-stage { height: 100vh; display: flex; align-items: center; justify-content: center; }
+.glass-pane { width: 750px; height: 420px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(30px); border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.2); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+
+.landing-title { 
+    font-family: 'Great Vibes', cursive; 
+    font-size: 160px; 
+    color: #111; 
+    margin-bottom: -15px; 
+    font-weight: 400;
+}
+
+.landing-title::before {
+    content: "NONITH'S";
+    display: block;
+    font-family: -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: -40px;
+    opacity: 0.8;
+}
+
+.category-bar { display: flex; gap: 20px; background: rgba(255,255,255,0.7); padding: 12px 25px; border-radius: 50px; }
+.category-bar button { background: none; border: none; font-weight: 700; color: #222; font-size: 12px; }
+
+.locked-btn { 
+    color: #888 !important; 
+    opacity: 0.6 !important; 
+    pointer-events: none; 
+}
+
+/* 8. WINDOW ARCHITECTURE */
+.window { width: 96%; height: 94vh; margin: 3vh auto; border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+.topbar { height: 72px; display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; }
+.topbar h3 { font-size: 17px; font-weight: 800; }
+.topbar .dots { position: absolute; left: 20px; display: flex; gap: 10px; }
+.dot { width: 14px; height: 14px; border-radius: 50%; }
+.red { background: #ff5f57; } .yellow { background: #ffbd2e; } .green { background: #28c840; }
+
+.theme-glass { background: rgba(245, 245, 247, 0.7); backdrop-filter: blur(25px); color: #111; }
+.theme-glass .topbar { background: rgba(229, 229, 229, 0.85); border-bottom: 1px solid rgba(0,0,0,0.1); }
+.theme-dark { background: #0c0c0c; color: #fff; }
+.theme-dark .topbar { background: #1a1a1a; border-bottom: 1px solid #333; }
+
+.layout { display: grid; grid-template-columns: 240px 1fr; height: calc(100% - 72px); }
+.sidebar { padding: 30px 20px; border-right: 1px solid rgba(0,0,0,0.1); flex-shrink: 0; }
+.side-nav-btn { width: 100%; text-align: left; background: none; border: none; padding: 14px; border-radius: 10px; font-size: 14px; color: inherit; opacity: 0.6; }
+.side-nav-btn.active { opacity: 1; font-weight: 800; background: rgba(0,0,0,0.05); }
+
+.content { overflow-y: auto; padding: 40px; height: 100%; }
+
+/* Resume Styles */
+.resume-wrapper { max-width: 900px; margin: 0 auto; color: #333; }
+.resume-header h1 { font-size: 42px; font-weight: 900; letter-spacing: -1px; }
+.role-tag { font-weight: 700; color: #0084ff; font-size: 14px; margin-bottom: 15px; }
+.summary { font-size: 18px; line-height: 1.6; opacity: 0.8; margin-bottom: 40px; }
+.resume-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; }
+.section-title { font-size: 11px; font-weight: 900; letter-spacing: 3px; color: #999; margin-bottom: 25px; }
+.exp-item { margin-bottom: 30px; }
+.exp-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+.company { font-weight: 800; font-size: 16px; }
+.date { font-size: 12px; color: #666; font-weight: 600; }
+.position { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 10px; }
+.exp-item ul { padding-left: 20px; }
+.exp-item li { font-size: 14px; color: #555; margin-bottom: 8px; line-height: 1.5; }
+.skills-box p { font-size: 14px; line-height: 2; color: #444; }
+.side-label { font-size: 10px; font-weight: 900; color: #999; margin-bottom: 10px; }
+.contact-info a { display: block; font-size: 13px; color: #111; text-decoration: none; font-weight: 700; margin-bottom: 5px; }
+
+/* Graphic/Vector/UIUX logic (Unchanged) */
+.poster-grid { display: flex; gap: 25px; overflow-x: auto; padding-bottom: 20px; align-items: flex-start; }
+.poster-item img { height: 480px; width: auto; max-width: 650px; object-fit: contain; border-radius: 18px; transition: transform 0.4s; background: rgba(255,255,255,0.03); }
+.poster-item img:hover { transform: scale(1.02); }
+.vector-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; width: 100%; }
+.vector-actual { width: 100%; border-radius: 20px; transition: transform 0.4s ease; }
+#uiux .content { display: block; padding: 60px 40px; }
+.ui-case-study { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 50px; }
+.ui-intro-row { display: flex; align-items: flex-start; gap: 40px; }
+.ui-main-logo { width: 180px; flex-shrink: 0; }
+.ui-desc { font-size: 18px; line-height: 1.7; color: #ccc; }
+.ui-label { text-align: center; font-size: 11px; font-weight: 900; letter-spacing: 4px; color: #555; border-bottom: 1px solid #222; padding-bottom: 15px; }
+.logo-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.logo-box img { width: 100%; height: 280px; object-fit: contain; background: #111; border-radius: 16px; border: 1px solid #222; }
+.ui-full-width-stack { display: flex; flex-direction: column; gap: 30px; }
+.ui-full-width-stack img { width: 100%; border-radius: 18px; border: 1px solid #1a1a1a; }
+.ui-mobile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding-bottom: 120px; }
+.mobile-box img { width: 100%; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }

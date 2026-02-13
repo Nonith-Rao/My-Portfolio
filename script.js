@@ -57,3 +57,15 @@ document.querySelectorAll(".side-nav-btn").forEach(btn => {
 document.querySelectorAll(".back-btn").forEach(btn => {
     btn.addEventListener("click", () => openPage("landing"));
 });
+
+// Handle hover videos for Motion Preview items
+document.querySelectorAll('.motion-preview').forEach(container => {
+    const video = container.querySelector('.preview-video');
+    container.addEventListener('mouseenter', () => {
+        video.play().catch(e => console.log("Video play interrupted"));
+    });
+    container.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0; 
+    });
+});

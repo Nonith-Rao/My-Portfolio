@@ -46,7 +46,7 @@
                         <button onclick="openPage('graphic')">GRAPHIC DESIGN</button>
                         <button onclick="openPage('vector')">VECTOR ILLUSTRATIONS</button>
                         <button onclick="openPage('uiux')">UI/UX</button>
-                        <button class="locked-btn">MOTION GRAPHICS</button>
+                        <button onclick="openPage('motion')">MOTION GRAPHICS</button>
                     </div>
                 </div>
             </div>
@@ -143,6 +143,7 @@
                     <button class="side-nav-btn active" data-target="graphic">Graphic Design</button>
                     <button class="side-nav-btn" data-target="uiux">UI / UX</button>
                     <button class="side-nav-btn" data-target="vector">Vector Illustrations</button>
+                    <button class="side-nav-btn" data-target="motion">Motion Graphics</button>
                 </aside>
                 <main class="content">
                     <div class="section-header"><h3>Latest Work</h3><span class="scroll-hint">Scroll Right ➔</span></div>
@@ -150,7 +151,13 @@
                         <div class="poster-item"><img src="assets/poster1.jpg"><p>AAA:Bangalore</p></div>
                         <div class="poster-item"><img src="assets/poster2.jpg"><p>GDGC Recruitment</p></div>
                         <div class="poster-item"><img src="assets/poster3.jpg"><p>UDC:Dallas</p></div>
-                        <div class="poster-item"><img src="assets/poster4.jpg"><p>Hacktober</p></div>
+                        
+                        <div class="poster-item motion-preview">
+                            <img src="assets/poster4.jpg" class="preview-img">
+                            <video src="assets/motion-graphics.mp4" class="preview-video" loop muted playsinline></video>
+                            <p>Hacktober (Hover for Motion)</p>
+                        </div>
+
                         <div class="poster-item"><img src="assets/Shwetha.png"><p>Display Flyer</p></div>
                         <div class="poster-item banner-item"><img src="assets/banner1.jpg"><p>Avinya CSIT</p></div>
                         <div class="poster-item banner-item"><img src="assets/banner2.jpg"><p>MLRIT Integration</p></div>
@@ -175,6 +182,7 @@
                     <button class="side-nav-btn" data-target="graphic">Graphic Design</button>
                     <button class="side-nav-btn" data-target="uiux">UI / UX</button>
                     <button class="side-nav-btn active" data-target="vector">Vector Illustrations</button>
+                    <button class="side-nav-btn" data-target="motion">Motion Graphics</button>
                 </aside>
                 <main class="content">
                     <div class="vector-list">
@@ -183,6 +191,38 @@
                         <img src="assets/vector3.jpg" class="vector-actual">
                         <img src="assets/vector4.jpg" class="vector-actual">
                         <img src="assets/vector5.jpg" class="vector-actual">
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <section id="motion" class="page">
+        <div class="window theme-glass">
+            <div class="topbar">
+                <div class="dots">
+                    <span class="dot red back-btn"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <h3>Nonith’s Portfolio – Motion Graphics</h3>
+            </div>
+            <div class="layout">
+                <aside class="sidebar">
+                    <button class="side-nav-btn" data-target="graphic">Graphic Design</button>
+                    <button class="side-nav-btn" data-target="uiux">UI / UX</button>
+                    <button class="side-nav-btn" data-target="vector">Vector Illustrations</button>
+                    <button class="side-nav-btn active" data-target="motion">Motion Graphics</button>
+                </aside>
+                <main class="content">
+                    <div class="motion-gallery">
+                        <div class="motion-card">
+                            <video src="assets/motion-graphics.mp4" controls class="full-motion-video"></video>
+                            <div class="motion-info">
+                                <h3>Hacktober Motion Graphics</h3>
+                                <p>A high-energy motion piece designed to showcase dynamic typography and brand motion.</p>
+                            </div>
+                        </div>
                     </div>
                 </main>
             </div>
@@ -204,6 +244,7 @@
                     <button class="side-nav-btn" data-target="graphic">Graphic Design</button>
                     <button class="side-nav-btn active" data-target="uiux">UI / UX</button>
                     <button class="side-nav-btn" data-target="vector">Vector Illustrations</button>
+                    <button class="side-nav-btn" data-target="motion">Motion Graphics</button>
                 </aside>
                 <main class="content">
                     <div class="ui-case-study">

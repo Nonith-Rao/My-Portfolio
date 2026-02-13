@@ -152,12 +152,6 @@ body {
 .category-bar { display: flex; gap: 20px; background: rgba(255,255,255,0.7); padding: 12px 25px; border-radius: 50px; }
 .category-bar button { background: none; border: none; font-weight: 700; color: #222; font-size: 12px; }
 
-.locked-btn { 
-    color: #888 !important; 
-    opacity: 0.6 !important; 
-    pointer-events: none; 
-}
-
 /* 8. WINDOW ARCHITECTURE */
 .window { width: 96%; height: 94vh; margin: 3vh auto; border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
 .topbar { height: 72px; display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; }
@@ -196,7 +190,35 @@ body {
 .side-label { font-size: 10px; font-weight: 900; color: #999; margin-bottom: 10px; }
 .contact-info a { display: block; font-size: 13px; color: #111; text-decoration: none; font-weight: 700; margin-bottom: 5px; }
 
-/* Graphic/Vector/UIUX logic (Unchanged) */
+/* Logic for hover video in Graphic Design */
+.motion-preview { position: relative; }
+.preview-video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 480px;
+    object-fit: contain;
+    border-radius: 18px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+.motion-preview:hover .preview-video { opacity: 1; }
+.motion-preview:hover .preview-img { opacity: 0; }
+
+/* Motion Graphics Section Styles */
+.motion-gallery { max-width: 900px; margin: 0 auto; }
+.motion-card { 
+    background: rgba(255,255,255,0.05); 
+    border-radius: 24px; 
+    overflow: hidden; 
+    border: 1px solid rgba(0,0,0,0.1); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.full-motion-video { width: 100%; display: block; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.motion-info { padding: 30px; }
+.motion-info h3 { font-size: 22px; margin-bottom: 10px; }
+.motion-info p { font-size: 15px; opacity: 0.7; line-height: 1.6; }
+
 .poster-grid { display: flex; gap: 25px; overflow-x: auto; padding-bottom: 20px; align-items: flex-start; }
 .poster-item img { height: 480px; width: auto; max-width: 650px; object-fit: contain; border-radius: 18px; transition: transform 0.4s; background: rgba(255,255,255,0.03); }
 .poster-item img:hover { transform: scale(1.02); }

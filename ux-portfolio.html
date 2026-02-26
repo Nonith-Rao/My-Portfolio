@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nonith Portfolio (UX View)</title>
+<style>
+    /* --- 1. FONTS & GLOBALS --- */
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    html, body, button, .dot, .side-nav-btn, img, a { cursor: none !important; }
+    body { background: #000; overflow: hidden; height: 100vh; width: 100vw; }
+
+    /* --- 2. CUSTOM CURSOR --- */
+    .cursor-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10001; pointer-events: none; }
+    .liquid-cursor { width: 25px; height: 25px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 50%; position: absolute; transform: translate(-50%, -50%); backdrop-filter: blur(8px) saturate(160%); box-shadow: 0 0 20px rgba(0, 102, 204, 0.2); transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s; }
+    .liquid-cursor.active { width: 55px; height: 55px; background: rgba(0, 102, 204, 0.15); border-color: rgba(0, 102, 204, 0.6); }
+
+    /* --- 3. TOP NAVIGATION --- */
+    .top-nav { position: fixed; top: 30px; right: 30px; z-index: 1000; display: flex; gap: 15px; }
+    .about-trigger { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 10px 25px; border-radius: 50px; color: white; font-weight: 800; letter-spacing: 2px; font-size: 11px; transition: background 0.3s; text-transform: uppercase; }
+    .about-trigger:hover { background: rgba(255, 255, 255, 0.2); }
+
+    /* --- 4. SKY BACKGROUND & CLOUDS --- */
+    #global-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+    .sky-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+    
+    .cloud { position: absolute; width: 350px; opacity: 0.85; animation: floatCloud linear infinite; z-index: 2; }
+    .c1 { top: 5%; left: -400px; animation-duration: 45s; }
+    .c2 { top: 35%; left: -400px; animation-duration: 60s; width: 450px; }
+    .c3 { top: 65%; left: -400px; animation-duration: 50s; filter: blur(3px); }
+    
+    .front-reverse { position: absolute; inset: 0; z-index: 3; }
+    .front-reverse .cloud { animation: floatCloudReverse linear infinite; left: auto; right: -400px; }
+    .c4 { top: 15%; animation-duration: 55s; opacity: 0.6; }
+    .c5 { top: 55%; animation-duration: 40s; opacity: 0.7; filter: blur(2px); width: 500px; }
+
+    @keyframes floatCloud { from { transform: translateX(0); } to { transform: translateX(120vw); } }
+    @keyframes floatCloudReverse { from { transform: translateX(0); } to { transform: translateX(-120vw); } }
+
+    /* --- 5. PAGE SYSTEM --- */
+    .page { position: fixed; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; visibility: hidden; }
+    .page.active { opacity: 1; pointer-events: auto; visibility: visible; z-index: 10; }
+
+    /* --- 6. LANDING PAGE (GLASS STAGE) --- */
+    .glass-stage { height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .glass-pane { width: 750px; height: 420px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+    
+    .landing-title { font-family: 'Great Vibes', cursive; font-size: 150px; color: #111; margin-top: 45px; margin-bottom: 20px; font-weight: 400; text-shadow: 0 4px 15px rgba(255,255,255,0.4); }
+    .landing-title::before { content: "NONITH'S"; display: block; font-family: -apple-system, sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 5px; margin-bottom: -30px; opacity: 0.8; }
+    
+    .category-bar { display: flex; gap: 20px; background: rgba(255,255,255,0.75); padding: 12px 30px; border-radius: 50px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .category-bar button { background: none; border: none; font-weight: 800; color: #222; font-size: 12px; letter-spacing: 1px; transition: color 0.3s; }
+    .category-bar button:hover { color: #0066cc; }
+
+    /* --- 7. SCROLL HINTS (FIXED POSITIONING) --- */
+    .scroll-note { position: absolute; color: #888; font-family: -apple-system, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 3px; z-index: 100; pointer-events: none; text-transform: uppercase;}
+    .theme-dark .scroll-note { color: #aaa; }
+    .scroll-note.down { bottom: 30px; left: 50%; transform: translateX(-50%); animation: bounceDown 2s infinite; }
+    
+    /* Pulled "SCROLL RIGHT" elegantly to the bottom corner instead of floating over the art */
+    .scroll-note.right { bottom: 30px; right: 50px; color: #ff7a00; font-size: 12px; animation: slideRight 2s infinite; }
+
+    @keyframes bounceDown { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 10px); } }
+    @keyframes slideRight { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(15px); } }
+
+    /* --- 8. WINDOW ARCHITECTURE (INNER PAGES) --- */
+    .window { width: 96%; height: 94vh; margin: 3vh auto; border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.5); position: relative; } /* Added relative so scroll notes align inside window */
+    .topbar { height: 72px; display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; }
+    .topbar h3 { font-size: 17px; font-weight: 800; color: inherit; }
+    .dots { position: absolute; left: 20px; display: flex; gap: 10px; }
+    .dot { width: 14px; height: 14px; border-radius: 50%; }
+    .red { background: #ff5f57; } .yellow { background: #ffbd2e; } .green { background: #28c840; }
+
+    .theme-glass { background: rgba(245, 245, 247, 0.85); backdrop-filter: blur(25px); color: #111; }
+    .theme-glass .topbar { background: rgba(229, 229, 229, 0.9); border-bottom: 1px solid rgba(0,0,0,0.1); }
+    
+    .theme-dark { background: #0c0c0c; color: #fff; }
+    .theme-dark .topbar { background: #1a1a1a; border-bottom: 1px solid #333; }
+
+    .layout { display: grid; grid-template-columns: 240px 1fr; height: calc(100% - 72px); }
+    .sidebar { padding: 30px 20px; border-right: 1px solid rgba(0,0,0,0.1); flex-shrink: 0; display: flex; flex-direction: column; gap: 5px;}
+    .theme-dark .sidebar { border-right: 1px solid #333; }
+    
+    .side-nav-btn { width: 100%; text-align: left; background: none; border: none; padding: 14px; border-radius: 10px; font-size: 14px; color: inherit; opacity: 0.6; font-weight: 600; transition: 0.2s;}
+    .side-nav-btn.active, .side-nav-btn:hover { opacity: 1; font-weight: 800; background: rgba(0,0,0,0.05); }
+    .theme-dark .side-nav-btn.active, .theme-dark .side-nav-btn:hover { background: rgba(255,255,255,0.1); }
+
+    .content { overflow-y: auto; padding: 40px; height: 100%; position: relative; }
+
+    /* --- 9. CONTENT STYLES (RESUME, POSTERS, UIUX) --- */
+    .resume-wrapper { max-width: 900px; margin: 0 auto; color: inherit; padding-bottom: 50px;}
+    .resume-header h1 { font-size: 42px; font-weight: 900; letter-spacing: -1px; }
+    .role-tag { font-weight: 800; color: #0066cc; font-size: 14px; margin-bottom: 15px; text-transform: uppercase; }
+    .summary { font-size: 18px; line-height: 1.6; opacity: 0.8; margin-bottom: 40px; }
+    .side-label { font-size: 11px; font-weight: 900; color: #888; margin-bottom: 10px; letter-spacing: 2px;}
+    .contact-info a { display: block; font-size: 14px; color: inherit; text-decoration: none; font-weight: 700; margin-bottom: 5px; }
+
+    .poster-grid { display: flex; gap: 30px; overflow-x: auto; padding-bottom: 40px; align-items: flex-start; height: 100%; }
+    .poster-item { flex-shrink: 0; position: relative; }
+    .poster-item img { height: 480px; width: auto; max-width: 650px; object-fit: contain; border-radius: 18px; transition: transform 0.4s; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+    .poster-item img:hover { transform: scale(1.02); }
+
+    .vector-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; width: 100%; padding-bottom: 40px;}
+    .vector-actual { width: 100%; height: auto; object-fit: cover; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); transition: 0.3s; }
+    .vector-actual:hover { transform: scale(1.02); }
+
+    .full-motion-video { width: 100%; border-radius: 18px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+    
+    .preview-video { position: absolute; top: 0; left: 0; width: 100%; height: 480px; object-fit: contain; border-radius: 18px; opacity: 0; transition: 0.4s ease; pointer-events: none; }
+    .motion-preview:hover .preview-video { opacity: 1; }
+    .motion-preview:hover .preview-img { opacity: 0; }
+
+    /* UIUX CASE STUDY (REMOVED INVERT FILTER) */
+    .ui-case-study { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 60px; padding-bottom: 60px;}
+    .ui-intro-row { display: flex; align-items: flex-start; gap: 40px; }
+    .ui-main-logo { width: 180px; flex-shrink: 0; } 
+    .ui-desc { font-size: 17px; line-height: 1.7; color: #ccc; }
+    .ui-label { text-align: center; font-size: 12px; font-weight: 900; letter-spacing: 4px; color: #777; border-bottom: 1px solid #333; padding-bottom: 15px; }
+    .logo-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .logo-box { background: #111; border-radius: 16px; border: 1px solid #222; padding: 20px; text-align: center; }
+    .logo-box img { width: 100%; height: 200px; object-fit: contain; }
+    .ui-full-width-stack { display: flex; flex-direction: column; gap: 30px; }
+    .ui-full-width-stack img { width: 100%; border-radius: 18px; border: 1px solid #1a1a1a; }
+</style>
+</head>
+
+<body>
+
+<div class="cursor-wrapper">
+    <div class="liquid-cursor"></div>
+</div>
+
+<div id="global-bg">
+    <img src="assets/sky-background.jpg" class="sky-img" onerror="this.style.display='none'">
+    
+    <img src="assets/cloud1.png" class="cloud c1" onerror="this.style.display='none'">
+    <img src="assets/cloud2.png" class="cloud c2" onerror="this.style.display='none'">
+    <img src="assets/cloud1.png" class="cloud c3" onerror="this.style.display='none'">
+    
+    <div class="front-reverse">
+        <img src="assets/cloud2.png" class="cloud c4" onerror="this.style.display='none'">
+        <img src="assets/cloud1.png" class="cloud c5" onerror="this.style.display='none'">
+    </div>
+</div>
+
+<nav class="top-nav" id="top-nav-bar">
+    <button class="about-trigger" onclick="window.location.href='index.html'" style="border: 1px solid rgba(255,255,255,0.4); background: rgba(0,0,0,0.4);">➔ Back to UI Version</button>
+</nav>
+
+<section id="landing" class="page active">
+    <div class="glass-stage">
+        <div class="glass-pane">
+            <h1 class="landing-title">Portfolio</h1>
+            <div class="category-bar" style="margin-top: 30px;">
+                <button onclick="openPage('graphic')">GRAPHIC DESIGN</button>
+                <button onclick="openPage('vector')">VECTOR ILLUSTRATIONS</button>
+                <button onclick="openPage('uiux')">UI/UX</button>
+                <button onclick="openPage('motion')">MOTION GRAPHICS</button>
+            </div>
+            <button class="about-trigger" onclick="openPage('about')" style="margin-top: 30px; background: rgba(0,0,0,0.6);">About Me</button>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="page">
+<div class="window theme-glass">
+<div class="topbar">
+<div class="dots"><span class="dot red back-btn"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+<h3>Nonith Rao – About & Experience</h3>
+</div>
+<div class="layout">
+<aside class="sidebar">
+<div class="contact-info">
+<p class="side-label">CONTACT</p>
+<a href="mailto:nonithrao@icloud.com">nonithrao@icloud.com</a>
+<p class="side-label" style="margin-top:20px;">SOCIAL</p>
+<a href="#">LinkedIn</a>
+</div>
+</aside>
+<main class="content">
+<div class="resume-wrapper">
+<header class="resume-header">
+<h1>Nonith Rao</h1>
+<p class="role-tag">Product Designer | UI/UX Lead | Graphic Designer</p>
+<p class="summary">Creative Product & Visual Designer with nearly 2 years of experience crafting high-impact brand visuals, motion graphics, and scalable UI systems. Experienced in leading multi-disciplinary design initiatives.</p>
+</header>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px;">
+    <div>
+        <h4 class="side-label">EXPERIENCE</h4>
+        <div style="margin-bottom: 20px;">
+            <p style="font-weight: 800; font-size: 16px;">GDGC (Google Developer Group)</p>
+            <p style="font-size: 13px; color: #555; font-weight: 600;">Lead Designer | Present</p>
+            <ul style="padding-left: 15px; margin-top: 8px; font-size: 13px; color: #444; line-height: 1.6;">
+                <li>Led Graphic Design and UI/UX initiatives.</li>
+                <li>Built scalable design templates and reusable systems.</li>
+            </ul>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <p style="font-weight: 800; font-size: 16px;">Resspro</p>
+            <p style="font-size: 13px; color: #555; font-weight: 600;">Product Designer | Sep 2025 - Jan 2026</p>
+            <ul style="padding-left: 15px; margin-top: 8px; font-size: 13px; color: #444; line-height: 1.6;">
+                <li>Designed a mobile-first booking platform with structured user flows.</li>
+            </ul>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <p style="font-weight: 800; font-size: 16px;">All About Anxiety Concert</p>
+            <p style="font-size: 13px; color: #555; font-weight: 600;">Graphic Designer</p>
+            <ul style="padding-left: 15px; margin-top: 8px; font-size: 13px; color: #444; line-height: 1.6;">
+                <li>Designed promotional posters and social campaigns.</li>
+            </ul>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <p style="font-weight: 800; font-size: 16px;">Vidya Vox NYE 2025</p>
+            <p style="font-size: 13px; color: #555; font-weight: 600;">Design Contributor</p>
+            <ul style="padding-left: 15px; margin-top: 8px; font-size: 13px; color: #444; line-height: 1.6;">
+                <li>Created high-visibility campaign visuals ensuring brand alignment.</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <h4 class="side-label">SKILLS & TOOLS</h4>
+        <p style="font-size: 14px; line-height: 2;"><strong>Design:</strong> Wireframing, Interaction Design, User Flows, Brand Identity, Prototyping<br>
+        <strong>Tools:</strong> Figma, Adobe Photoshop, Illustrator, After Effects, Premiere Pro</p>
+        <h4 class="side-label" style="margin-top: 30px;">EDUCATION</h4>
+        <p style="font-size: 14px;"><strong>MLR Institute of Technology</strong><br>B.Tech Computer Science & IT (2023 - 2027)</p>
+    </div>
+</div>
+</div>
+<div class="scroll-note down">SCROLL DOWN ↓</div>
+</main>
+</div>
+</div>
+</section>
+
+<section id="graphic" class="page">
+<div class="window theme-glass">
+<div class="topbar">
+<div class="dots"><span class="dot red back-btn"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+<h3>Graphic Design</h3>
+</div>
+<div class="layout">
+<aside class="sidebar">
+<button class="side-nav-btn active" onclick="openPage('graphic')">Graphic Design</button>
+<button class="side-nav-btn" onclick="openPage('vector')">Vector Illustrations</button>
+<button class="side-nav-btn" onclick="openPage('uiux')">UI / UX</button>
+<button class="side-nav-btn" onclick="openPage('motion')">Motion Graphics</button>
+</aside>
+<main class="content">
+
+<div class="poster-grid">
+    <div class="poster-item"><img src="assets/poster1.jpg"></div>
+    <div class="poster-item"><img src="assets/poster2.jpg"></div>
+    <div class="poster-item"><img src="assets/poster3.jpg"></div>
+    <div class="poster-item motion-preview">
+        <img src="assets/poster4.jpg" class="preview-img">
+        <video src="assets/motion-graphics.mp4" class="preview-video" loop muted playsinline></video>
+    </div>
+    <div class="poster-item"><img src="assets/Shwetha.png"></div>
+    <div class="poster-item"><img src="assets/banner1.jpg"></div>
+    <div class="poster-item"><img src="assets/banner2.jpg"></div>
+</div>
+
+<div class="scroll-note right">SCROLL RIGHT ➔</div>
+
+</main>
+</div>
+</div>
+</section>
+
+<section id="vector" class="page">
+<div class="window theme-glass">
+<div class="topbar">
+<div class="dots"><span class="dot red back-btn"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+<h3>Vector Illustrations</h3>
+</div>
+<div class="layout">
+<aside class="sidebar">
+<button class="side-nav-btn" onclick="openPage('graphic')">Graphic Design</button>
+<button class="side-nav-btn active" onclick="openPage('vector')">Vector Illustrations</button>
+<button class="side-nav-btn" onclick="openPage('uiux')">UI / UX</button>
+<button class="side-nav-btn" onclick="openPage('motion')">Motion Graphics</button>
+</aside>
+<main class="content">
+<div class="vector-list">
+    <img src="assets/vector1.jpg" class="vector-actual">
+    <img src="assets/vector2.jpg" class="vector-actual">
+    <img src="assets/vector3.jpg" class="vector-actual">
+    <img src="assets/vector4.jpg" class="vector-actual">
+    <img src="assets/vector5.jpg" class="vector-actual">
+</div>
+<div class="scroll-note down">SCROLL DOWN ↓</div>
+</main>
+</div>
+</div>
+</section>
+
+<section id="motion" class="page">
+<div class="window theme-glass">
+<div class="topbar">
+<div class="dots"><span class="dot red back-btn"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+<h3>Motion Graphics</h3>
+</div>
+<div class="layout">
+<aside class="sidebar">
+<button class="side-nav-btn" onclick="openPage('graphic')">Graphic Design</button>
+<button class="side-nav-btn" onclick="openPage('vector')">Vector Illustrations</button>
+<button class="side-nav-btn" onclick="openPage('uiux')">UI / UX</button>
+<button class="side-nav-btn active" onclick="openPage('motion')">Motion Graphics</button>
+</aside>
+<main class="content">
+<video src="assets/motion-graphics.mp4" controls class="full-motion-video"></video>
+<div class="scroll-note down">SCROLL DOWN ↓</div>
+</main>
+</div>
+</div>
+</section>
+
+<section id="uiux" class="page">
+<div class="window theme-dark">
+<div class="topbar">
+<div class="dots"><span class="dot red back-btn"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+<h3>UI/UX Design</h3>
+</div>
+<div class="layout">
+<aside class="sidebar">
+<button class="side-nav-btn" onclick="openPage('graphic')">Graphic Design</button>
+<button class="side-nav-btn" onclick="openPage('vector')">Vector Illustrations</button>
+<button class="side-nav-btn active" onclick="openPage('uiux')">UI / UX</button>
+<button class="side-nav-btn" onclick="openPage('motion')">Motion Graphics</button>
+</aside>
+<main class="content">
+    <div class="ui-case-study">
+        <div class="ui-intro-row">
+            <img src="assets/respro-logo.png" class="ui-main-logo">
+            <p class="ui-desc">Designed a mobile-first booking platform including structured user flows, wireframes, high-fidelity UI, and interactive prototypes. Focused on conversion optimization and scalable architecture.</p>
+        </div>
+        
+        <div class="ui-label">LOGO REDESIGN</div>
+        <div class="logo-compare-grid">
+            <div class="logo-box"><img src="assets/respro-old.png"></div>
+            <div class="logo-box"><img src="assets/respro-new.png"></div>
+        </div>
+        
+        <div class="ui-label">DASHBOARD INTERFACE</div>
+        <div class="ui-full-width-stack">
+            <img src="assets/respro-dash1.jpg">
+            <img src="assets/respro-dash2.jpg">
+        </div>
+
+        <div class="ui-label" style="margin-top: 40px;">E-COMMERCE DESIGN</div>
+        <div class="ui-full-width-stack" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <img src="assets/ecommerce1.jpg">
+            <img src="assets/ecommerce2.jpg">
+        </div>
+    </div>
+    <div class="scroll-note down">SCROLL DOWN ↓</div>
+</main>
+</div>
+</div>
+</section>
+
+<audio id="bgMusic" loop><source src="assets/music.mp3" type="audio/mpeg"></audio>
+<audio id="clickSound"><source src="assets/click.mp3" type="audio/mpeg"></audio>
+
+<script>
+    const music = document.getElementById("bgMusic");
+    const clickSound = document.getElementById("clickSound");
+    const cursor = document.querySelector('.liquid-cursor');
+    const topNav = document.getElementById('top-nav-bar');
+
+    // MOUSE TRACKING
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    document.querySelectorAll('button, .dot, .side-nav-btn, img, a').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+
+    function playClick() { if(clickSound) { clickSound.currentTime = 0; clickSound.play().catch(() => {}); } }
+    function startMusic() { if (music && music.paused) { music.play().catch(() => {}); } }
+
+    document.addEventListener("click", (e) => {
+        if (e.target.tagName === "BUTTON" || e.target.classList.contains("dot") || e.target.classList.contains("side-nav-btn")) {
+            playClick();
+        }
+        if(e.target.classList.contains('back-btn')){
+            openPage('landing');
+        }
+    });
+
+    function openPage(id) {
+        startMusic();
+        document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+        const target = document.getElementById(id);
+        
+        if (target) {
+            target.classList.add("active");
+            
+            // Hide Background on Dark Theme Pages
+            const globalBg = document.getElementById("global-bg");
+            if (globalBg) {
+                if (id === 'uiux') globalBg.style.opacity = "0";
+                else globalBg.style.opacity = "1";
+            }
+
+            // Hide the top nav button when inside a window
+            if (topNav) {
+                if (id === 'landing') topNav.style.display = "flex";
+                else topNav.style.display = "none";
+            }
+        }
+        
+        document.querySelectorAll(".side-nav-btn").forEach(btn => {
+            btn.classList.toggle("active", btn.getAttribute("onclick").includes(id));
+        });
+    }
+
+    // MOTION HOVER LOGIC
+    document.querySelectorAll('.motion-preview').forEach(container => {
+        const video = container.querySelector('.preview-video');
+        container.addEventListener('mouseenter', () => { video.play().catch(e => console.log("Video play interrupted")); });
+        container.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+    });
+</script>
+</body>
+</html>

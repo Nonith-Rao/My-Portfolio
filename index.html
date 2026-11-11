@@ -5,282 +5,516 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nonith's Portfolio</title>
+    <meta name="description" content="Nonith Rao: product and visual designer. Website design, Amazon Brand Stores, graphic design and AI/ML.">
+    <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="is-loading">
 
     <div class="cursor-wrapper">
         <div class="liquid-cursor"></div>
     </div>
 
+    <!-- BACKGROUND: hazeglow gradient (seed 2888266082) rebuilt in CSS -->
+    <div class="haze" aria-hidden="true">
+        <div class="haze-layer">
+            <div class="haze-mesh"></div>
+        </div>
+        <div class="haze-layer haze-refract">
+            <div class="haze-shift">
+                <div class="haze-mesh"></div>
+            </div>
+        </div>
+        <div class="haze-glass"></div>
+        <div class="haze-grain"></div>
+    </div>
+
     <div id="loader">
-        <div class="loader-bg"></div>
+        <!-- dimmed copy of the background so the loader stays opaque but keeps the gradient look -->
+        <div class="haze loader-haze" aria-hidden="true">
+            <div class="haze-layer">
+                <div class="haze-mesh"></div>
+            </div>
+            <div class="haze-layer haze-refract">
+                <div class="haze-shift">
+                    <div class="haze-mesh"></div>
+                </div>
+            </div>
+            <div class="haze-glass"></div>
+            <div class="haze-grain"></div>
+        </div>
         <div class="loading-wrapper">
             <div class="loading-text">LOADING...</div>
             <div class="loading-bar">
-                <div class="loading-fill" id="loading-fill" style="width: 0%;"></div>
+                <div class="loading-fill" id="loading-fill"></div>
             </div>
-            <div class="loading-subtext">OPENING UI WEBSITE</div>
+            <div class="loading-subtext">OPENING PORTFOLIO</div>
         </div>
     </div>
 
-    <div id="global-bg" class="landing-bg-container">
-        <div class="bg-layer main-bg"></div>
-        <div class="bg-layer hover-bg" id="spotlight-layer"></div>
-        <div class="ripple-container">
-            <div class="ripple-circle"></div>
-        </div>
-    </div>
-
-    <div id="bg-blur-overlay"></div>
-
-    <div id="landing-ui" class="active">
-        <div class="tech-top-box">
-            <div class="tech-box-base"></div>
-            <div class="tech-box-inner"></div>
-            <div class="tech-content">
-                <div class="box-left">
-                    <span id="real-date">YYYY.MM.DD</span>
-                    <span id="real-time" style="margin-left: 30px;">00:00:00</span>
-                </div>
-
-                <div class="box-center" id="ux-switch-btn">
-                    <h2>CLICK FOR<br>UX VIEW</h2>
-                </div>
-
-                <div class="box-right">
-                    <button class="hud-link" onclick="openPage('about')">ABOUT ME</button>
-                </div>
+    <header class="tech-top-box" id="hud">
+        <div class="tech-box-base"></div>
+        <div class="tech-box-inner"></div>
+        <div class="tech-content">
+            <div class="box-left">
+                <span id="real-date">YYYY.MM.DD</span>
+                <span id="real-time">00:00:00</span>
+            </div>
+            <div class="box-center">
+                <h2 id="current-section">NONITH RAO</h2>
+            </div>
+            <div class="box-right">
+                <a class="hud-link hud-tab" href="#figma">FIGMA DESIGNS</a>
+                <a class="hud-link" href="#about">ABOUT ME</a>
             </div>
         </div>
+    </header>
 
-        <div class="category-list">
-            <button data-text="GRAPHIC DESIGN" onclick="openPage('graphic')"><span>GRAPHIC DESIGN</span></button>
-            <button data-text="VECTOR ILLUSTRATIONS" onclick="openPage('vector')"><span>VECTOR
-                    ILLUSTRATIONS</span></button>
-            <button data-text="UI/UX" onclick="openPage('uiux')"><span>UI/UX</span></button>
-        </div>
+    <main>
 
-        <div class="hero-text">
-            <h2 class="name-title">Nonith's</h2>
-            <h1 class="main-title">PORTFOLIO</h1>
-        </div>
-    </div>
-
-    <div id="inner-hud">
-        <div class="tech-top-box inner-box">
-            <div class="tech-box-base"></div>
-            <div class="tech-box-inner"></div>
-            <div class="tech-content">
-                <div class="box-left inner-nav">
-                    <button class="hud-link" onclick="openPage('landing')">HOME</button>
-                    <button class="hud-link" onclick="openPage('graphic')">GRAPHIC DESIGN</button>
-                    <button class="hud-link" onclick="openPage('uiux')">UI/UX</button>
-                </div>
-                <div class="box-center">
-                    <h2 id="current-page-title">ABOUT ME</h2>
-                </div>
-                <div class="box-right inner-nav">
-                    <button class="hud-link" onclick="openPage('vector')">VECTOR ILLUSTRATIONS</button>
-                    <button class="hud-link locked">MOTION GRAPHICS</button>
-                </div>
+        <!-- HERO -->
+        <section id="home" class="hero" data-title="NONITH RAO">
+            <div class="hero-text">
+                <h2 class="name-title">Nonith's</h2>
+                <h1 class="main-title">PORTFOLIO</h1>
+                <p class="hero-sub">Product &amp; Visual Designer · AI/ML Engineer</p>
             </div>
-        </div>
-    </div>
+            <a class="scroll-cue" href="#web">SCROLL ↓</a>
+        </section>
 
-    <section id="about" class="page">
-        <div class="floating-content">
-            <div class="new-resume-layout">
-                <div class="resume-card header-card">
-                    <h1>NONITH RAO</h1>
-                    <p class="role-tag">Product & Visual Designer specializing in Brand Systems, Motion &
-                        Conversion-Focused UI</p>
-                    <div class="contact-links">
-                        <span>Email: nonithrao@icloud.com</span>
-                        <span class="divider">|</span>
-                        <span>Phone: +91-8309406465</span>
-                    </div>
-                    <p class="new-summary">Creative Product & Visual Designer with nearly 2 years of experience crafting
-                        high-impact brand visuals, motion graphics, and scalable UI systems. Experienced in leading
-                        multi-disciplinary design initiatives and delivering conversion-focused digital experiences.</p>
-                </div>
+        <!-- 01 · WEBSITE DESIGN -->
+        <section id="web" class="section" data-title="WEBSITE DESIGN">
+            <header class="section-head reveal">
+                <span class="section-index">01</span>
+                <h2>Website Design</h2>
+                <p>Figma website designs, Amazon Brand Stores and e-commerce banners.</p>
+            </header>
 
-                <div class="resume-body-grid">
-                    <div class="resume-main-col">
-                        <div class="resume-card">
-                            <h3 class="card-title">EXPERIENCE</h3>
-                            <div class="exp-block">
-                                <div class="exp-top">
-                                    <span class="company">GDGC (Google Developer Group Campus)</span>
-                                    <span class="date">Present</span>
-                                </div>
-                                <p class="position">Lead Designer</p>
-                                <ul>
-                                    <li>Led Graphic Design and UI/UX initiatives, maintaining brand consistency across
-                                        campus-wide technical events.</li>
-                                    <li>Built scalable design templates and reusable systems reducing turnaround time.
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="exp-block">
-                                <div class="exp-top">
-                                    <span class="company">All About Anxiety (Bangalore Concert)</span>
-                                </div>
-                                <p class="position">Graphic Designer</p>
-                                <ul>
-                                    <li>Designed promotional posters and social campaigns aligned with youth and music
-                                        culture aesthetics.</li>
-                                </ul>
-                            </div>
-                            <div class="exp-block">
-                                <div class="exp-top">
-                                    <span class="company">Vidya Vox NYE 2025 (UDC Dallas)</span>
-                                </div>
-                                <p class="position">Design Contributor</p>
-                                <ul>
-                                    <li>Created high-visibility campaign visuals ensuring strong visual hierarchy and
-                                        brand alignment.</li>
-                                </ul>
-                            </div>
-                            <div class="exp-block">
-                                <div class="exp-top">
-                                    <span class="company">Resspro</span>
-                                    <span class="date">Sep 2025 – Jan 2026</span>
-                                </div>
-                                <p class="position">Product Designer</p>
-                                <ul>
-                                    <li>Designed a mobile-first booking platform including structured user flows,
-                                        wireframes, and high-fidelity UI.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="resume-side-col">
-                        <div class="resume-card">
-                            <h3 class="card-title">SKILLS</h3>
-                            <div class="skill-category">
-                                <h4>Product Design</h4>
-                                <p>Wireframing, Interaction Design, User Flows, Prototyping</p>
-                            </div>
-                            <div class="skill-category">
-                                <h4>Visual Design</h4>
-                                <p>Brand Identity, Campaign Creatives, Layout Systems, Typography</p>
-                            </div>
-                            <div class="skill-category">
-                                <h4>Tools</h4>
-                                <p>Figma, Adobe Photoshop, Illustrator, After Effects, Premiere Pro</p>
-                            </div>
-                            <div class="skill-category">
-                                <h4>AI & Workflow</h4>
-                                <p>Generative Design Tools, AI-assisted Image Generation</p>
-                            </div>
-                        </div>
-                        <div class="resume-card" style="margin-top: 30px;">
-                            <h3 class="card-title">EDUCATION</h3>
-                            <div class="exp-block">
-                                <div class="exp-top">
-                                    <span class="company">MLR Institute of Technology</span>
-                                    <span class="date">2023 – 2027</span>
-                                </div>
-                                <p class="position">B.Tech - Computer Science & IT</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-note down">SCROLL DOWN ↓</div>
-    </section>
+            <!-- FIGMA DESIGNS: one canvas card per brand, with live site + Figma links -->
+            <div id="figma" class="figma-showcase reveal" data-title="FIGMA DESIGNS">
+                <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+                    <symbol id="figma-logo" viewBox="0 0 38 57">
+                        <path fill="#F24E1E" d="M0 9.5A9.5 9.5 0 0 1 9.5 0H19v19H9.5A9.5 9.5 0 0 1 0 9.5z" />
+                        <path fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 1 1 0 19H19V0z" />
+                        <path fill="#A259FF" d="M0 28.5A9.5 9.5 0 0 1 9.5 19H19v19H9.5A9.5 9.5 0 0 1 0 28.5z" />
+                        <path fill="#1ABCFE" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z" />
+                        <path fill="#0ACF83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z" />
+                    </symbol>
+                </svg>
 
-    <section id="graphic" class="page">
-        <div class="scroll-note-top-left">SCROLL RIGHT ➔</div>
-
-        <div class="horizontal-scroll-container">
-            <div class="poster-item"><img src="assets/poster1.jpg">
-                <p>AAA:Bangalore</p>
-            </div>
-            <div class="poster-item"><img src="assets/poster2.jpg">
-                <p>GDGC Recruitment</p>
-            </div>
-            <div class="poster-item"><img src="assets/poster3.jpg">
-                <p>UDC:Dallas</p>
-            </div>
-
-            <div class="poster-item motion-preview">
-                <img src="assets/poster4.jpg" class="preview-img">
-                <video src="assets/motion-graphics.mp4" class="preview-video" loop muted playsinline></video>
-                <p>Hacktober (Hover for Motion)</p>
-            </div>
-
-            <div class="poster-item"><img src="assets/Shwetha.png">
-                <p>Display Flyer</p>
-            </div>
-            <div class="poster-item banner-item"><img src="assets/banner1.jpg">
-                <p>Avinya CSIT</p>
-            </div>
-            <div class="poster-item banner-item"><img src="assets/banner2.jpg">
-                <p>MLRIT Integration</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="vector" class="page">
-        <div class="floating-content full-width">
-            <div class="vector-list">
-                <img src="assets/vector1.jpg" class="vector-actual">
-                <img src="assets/vector2.jpg" class="vector-actual">
-                <img src="assets/vector3.jpg" class="vector-actual">
-                <img src="assets/vector4.jpg" class="vector-actual">
-                <img src="assets/vector5.jpg" class="vector-actual">
-            </div>
-        </div>
-        <div class="scroll-note down">SCROLL DOWN ↓</div>
-    </section>
-
-    <section id="uiux" class="page">
-        <div class="floating-content full-width">
-            <div class="ui-case-study-modern">
-                <div class="project-card">
-                    <div class="project-header">
-                        <img src="assets/respro-logo.png" class="project-brand-img">
-                        <div class="project-text">
-                            <h3>Resspro Ambulance Booking</h3>
-                            <p>Designed a mobile-first booking platform including structured user flows, wireframes,
-                                high-fidelity UI, and interactive prototypes. Focused on conversion optimization and
-                                scalable component architecture.</p>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <div class="project-section">
-                            <h4 class="section-tag">Brand Evolution</h4>
-                            <div class="logo-comparison">
-                                <div class="logo-box"><img src="assets/respro-old.png">
-                                    <p>PREVIOUS</p>
-                                </div>
-                                <div class="logo-box"><img src="assets/respro-new.png">
-                                    <p>REDESIGN</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-section" style="margin-top: 40px;">
-                            <h4 class="section-tag">Dashboard Interface</h4>
-                            <div class="img-stack">
-                                <img src="assets/respro-dash1.jpg">
-                                <img src="assets/respro-dash2.jpg">
-                            </div>
-                        </div>
+                <div class="figma-showcase-head">
+                    <svg class="figma-mark" aria-hidden="true"><use href="#figma-logo" /></svg>
+                    <div>
+                        <h3>Figma Designs</h3>
+                        <p>Live design files, and the websites they shipped to.</p>
                     </div>
                 </div>
 
-                <div class="scroll-note down">SCROLL DOWN ↓</div>
-    </section>
+                <div class="figma-grid">
+                    <article class="figma-card">
+                        <a class="fc-canvas" href="https://www.figma.com/design/CqC7FoldO2GV7TDWKq0AL8/Untitled?node-id=0-1" target="_blank" rel="noopener" aria-label="Open the MOSS Figma file">
+                            <div class="fc-bar">
+                                <svg aria-hidden="true"><use href="#figma-logo" /></svg>
+                                <span>MOSS · Brand &amp; Web</span>
+                                <em class="fc-live">Live</em>
+                                <em class="fc-open">Open in Figma ↗</em>
+                            </div>
+                            <figure class="fc-frame" style="--x: 8%; --y: 14%; --w: 84%;">
+                                <figcaption>Store / Home</figcaption>
+                                <img src="assets/web/moss-home-hero.jpg" width="2400" height="480" loading="lazy" alt="">
+                            </figure>
+                            <figure class="fc-frame is-selected" style="--x: 8%; --y: 42%; --w: 36%;">
+                                <figcaption>Echo Endura</figcaption>
+                                <img src="assets/web/moss-tile-endura.jpg" width="1200" height="1200" loading="lazy" alt="">
+                                <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+                                <span class="fc-size">1500 × 1500</span>
+                            </figure>
+                            <figure class="fc-frame" style="--x: 56%; --y: 42%; --w: 36%;">
+                                <figcaption>Echo Whisper</figcaption>
+                                <img src="assets/web/moss-tile-whisper.jpg" width="1200" height="1200" loading="lazy" alt="">
+                            </figure>
+                            <svg class="fc-flow" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                                <defs><marker id="fc-arrow-moss" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="2.2" markerHeight="2.2" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0d99ff" /></marker></defs>
+                                <path d="M24 31.4C24 36 26 36 26 41.2" marker-end="url(#fc-arrow-moss)" />
+                                <path d="M76 31.4C76 36 74 36 74 41.2" marker-end="url(#fc-arrow-moss)" />
+                            </svg>
+                        </a>
+                        <div class="fc-info">
+                            <h4>MOSS</h4>
+                            <p>Campaign creatives, product visuals and web banners for an audio brand.</p>
+                            <div class="fc-links">
+                                <a class="fc-link live" href="https://gomoss.co" target="_blank" rel="noopener"><span>Live website</span>gomoss.co ↗</a>
+                                <a class="fc-link" href="https://www.figma.com/design/CqC7FoldO2GV7TDWKq0AL8/Untitled?node-id=0-1" target="_blank" rel="noopener"><span>Figma file</span>View designs ↗</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="figma-card">
+                        <a class="fc-canvas" href="https://www.figma.com/design/hhtqZhSOByDy0tcofX4Kd8/Untitled" target="_blank" rel="noopener" aria-label="Open the DailyMonk Figma file">
+                            <div class="fc-bar">
+                                <svg aria-hidden="true"><use href="#figma-logo" /></svg>
+                                <span>DailyMonk · Website</span>
+                                <em class="fc-live">Live</em>
+                                <em class="fc-open">Open in Figma ↗</em>
+                            </div>
+                            <figure class="fc-frame" style="--x: 8%; --y: 15%; --w: 38%;"><figcaption>Lab Report</figcaption><img src="assets/web/dm-1.jpg" width="1706" height="730" loading="lazy" alt=""></figure>
+                            <figure class="fc-frame" style="--x: 54%; --y: 15%; --w: 38%;"><figcaption>Sweeteners</figcaption><img src="assets/web/dm-2.jpg" width="1706" height="730" loading="lazy" alt=""></figure>
+                            <figure class="fc-frame" style="--x: 8%; --y: 43%; --w: 38%;"><figcaption>Kids Protein</figcaption><img src="assets/web/dm-3.jpg" width="1706" height="730" loading="lazy" alt=""></figure>
+                            <figure class="fc-frame" style="--x: 54%; --y: 43%; --w: 38%;"><figcaption>Plant vs Whey</figcaption><img src="assets/web/dm-4.jpg" width="1706" height="730" loading="lazy" alt=""></figure>
+                            <figure class="fc-frame" style="--x: 8%; --y: 71%; --w: 38%;"><figcaption>Superfoods</figcaption><img src="assets/web/dm-6.jpg" width="1706" height="730" loading="lazy" alt=""></figure>
+                            <figure class="fc-frame is-selected" style="--x: 54%; --y: 71%; --w: 38%;">
+                                <figcaption>Fiber</figcaption>
+                                <img src="assets/web/dm-8.jpg" width="1706" height="730" loading="lazy" alt="">
+                                <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+                                <span class="fc-size">1706 × 730</span>
+                            </figure>
+                            <svg class="fc-flow" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                                <defs><marker id="fc-arrow-dm" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="2.2" markerHeight="2.2" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0d99ff" /></marker></defs>
+                                <path d="M46.4 23.1L53.4 23.1" marker-end="url(#fc-arrow-dm)" />
+                                <path d="M73 31.7C73 37.5 30 36.5 30 42.6" marker-end="url(#fc-arrow-dm)" />
+                                <path d="M46.4 51.1L53.4 51.1" marker-end="url(#fc-arrow-dm)" />
+                                <path d="M73 59.7C73 65.5 30 64.5 30 70.6" marker-end="url(#fc-arrow-dm)" />
+                                <path d="M46.4 79.1L53.4 79.1" marker-end="url(#fc-arrow-dm)" />
+                            </svg>
+                        </a>
+                        <div class="fc-info">
+                            <h4>DailyMonk</h4>
+                            <p>Home page banners for desktop and mobile, festive promos and blog banners for a plant-protein brand.</p>
+                            <div class="fc-links">
+                                <a class="fc-link live" href="https://dailymonk.in" target="_blank" rel="noopener"><span>Live website</span>dailymonk.in ↗</a>
+                                <a class="fc-link" href="https://www.figma.com/design/hhtqZhSOByDy0tcofX4Kd8/Untitled" target="_blank" rel="noopener"><span>Figma file</span>View designs ↗</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <article class="project-card reveal">
+                <div class="project-meta">
+                    <span class="section-tag">Amazon Brand Store</span>
+                    <h3>MOSS</h3>
+                    <p>Designed the Amazon Brand Store for MOSS, an audio brand: a cinematic homepage plus a dedicated page
+                        for every product line, from TWS earbuds and neckbands to cables. Each product page follows the
+                        same hero, features and lifestyle flow.</p>
+                </div>
+
+                <h4 class="sub-tag">Store Homepage</h4>
+                <div class="store-frame">
+                    <img src="assets/web/moss-home-hero.jpg" width="2400" height="480" loading="lazy" alt="MOSS store homepage hero: Habit made instinct">
+                    <img src="assets/web/moss-home-earpods.jpg" width="2400" height="480" loading="lazy" alt="MOSS earpods category banner">
+                    <img src="assets/web/moss-home-compare.jpg" width="2400" height="480" loading="lazy" alt="Echo Endura and Echo Whisper comparison banner">
+                    <div class="store-tiles">
+                        <img src="assets/web/moss-tile-endura.jpg" width="1200" height="1200" loading="lazy" alt="Echo Endura product tile">
+                        <img src="assets/web/moss-tile-whisper.jpg" width="1200" height="1200" loading="lazy" alt="Echo Whisper product tile">
+                    </div>
+                    <img src="assets/web/moss-lineup.jpg" width="2400" height="480" loading="lazy" alt="MOSS lineup banner: Crafted for Sound, Tuned for You">
+                </div>
+
+                <h4 class="sub-tag">Product Pages</h4>
+                <div class="product-pages">
+                    <figure class="product-page">
+                        <figcaption>Echo Endura</figcaption>
+                        <div class="store-frame">
+                            <img src="assets/web/moss-endura-1.jpg" width="2400" height="480" loading="lazy" alt="Echo Endura page hero">
+                            <img src="assets/web/moss-endura-2.jpg" width="2400" height="480" loading="lazy" alt="Echo Endura features: 8mm drivers, 70 hours playtime, quad mic, Bluetooth 5.4">
+                            <img src="assets/web/moss-endura-3.jpg" width="2400" height="480" loading="lazy" alt="Echo Endura lifestyle banner: Beyond Sound, Into Sensation">
+                        </div>
+                    </figure>
+                    <figure class="product-page">
+                        <figcaption>Echo Lume</figcaption>
+                        <div class="store-frame">
+                            <img src="assets/web/moss-lume-1.jpg" width="2400" height="480" loading="lazy" alt="Echo Lume page hero">
+                            <img src="assets/web/moss-lume-2.jpg" width="2400" height="480" loading="lazy" alt="Echo Lume features: IPX5, Bluetooth 6.0, ENC for clear calls, 45 hours playtime">
+                            <img src="assets/web/moss-lume-3.jpg" width="2400" height="480" loading="lazy" alt="Echo Lume lifestyle banner: Compact form, Sound Amplified">
+                        </div>
+                    </figure>
+                    <figure class="product-page">
+                        <figcaption>Echo Whisper</figcaption>
+                        <div class="store-frame">
+                            <img src="assets/web/moss-whisper-1.jpg" width="2400" height="480" loading="lazy" alt="Echo Whisper page hero">
+                            <img src="assets/web/moss-whisper-2.jpg" width="2400" height="480" loading="lazy" alt="Echo Whisper features: 10mm drivers, 60 hours playtime, IPX5, 360 spatial audio">
+                            <img src="assets/web/moss-whisper-3.jpg" width="2400" height="480" loading="lazy" alt="Echo Whisper lifestyle banner: Endless Depth, Quiet Sound">
+                        </div>
+                    </figure>
+                    <figure class="product-page">
+                        <figcaption>Echo Stride</figcaption>
+                        <div class="store-frame">
+                            <img src="assets/web/moss-stride-1.jpg" width="2400" height="480" loading="lazy" alt="Echo Stride neckband page hero">
+                            <img src="assets/web/moss-stride-2.jpg" width="2400" height="480" loading="lazy" alt="Echo Stride features: IPX5, Bluetooth 6.0, ENC for clear calls, 45 hours playtime">
+                            <img src="assets/web/moss-stride-3.jpg" width="2400" height="480" loading="lazy" alt="Echo Stride lifestyle banner: Wear Light, Wander Far">
+                        </div>
+                    </figure>
+                    <figure class="product-page">
+                        <figcaption>Cable</figcaption>
+                        <div class="store-frame">
+                            <img src="assets/web/moss-cable-1.jpg" width="2400" height="480" loading="lazy" alt="MOSS Cable page hero">
+                            <img src="assets/web/moss-cable-2.jpg" width="2400" height="480" loading="lazy" alt="MOSS Cable features: 1.2m, extended frame protection, 480 Mbps, 65W quick charge">
+                            <img src="assets/web/moss-cable-3.jpg" width="2400" height="480" loading="lazy" alt="MOSS Cable lifestyle banner: Ready To Go, Before You Know It">
+                        </div>
+                    </figure>
+                </div>
+            </article>
+
+            <article class="project-card reveal">
+                <div class="project-meta">
+                    <span class="section-tag">Amazon Design</span>
+                    <h3>DailyMonk</h3>
+                    <p>Designed a banner series for DailyMonk, a plant-protein brand: lab reports, natural sweeteners, kids'
+                        nutrition and plant vs. whey protein, all in one warm, consistent visual style.</p>
+                </div>
+                <div class="store-frame grid-2">
+                    <img src="assets/web/dm-1.jpg" width="1706" height="730" loading="lazy" alt="DailyMonk banner: What's in a lab report?">
+                    <img src="assets/web/dm-2.jpg" width="1706" height="730" loading="lazy" alt="DailyMonk banner: Stevia and monk fruit, how we sweeten without added sugar">
+                    <img src="assets/web/dm-3.jpg" width="1706" height="730" loading="lazy" alt="DailyMonk banner: How much protein does your child actually need?">
+                    <img src="assets/web/dm-4.jpg" width="1706" height="730" loading="lazy" alt="DailyMonk banner: Plant-based vs. whey protein">
+                    <img src="assets/web/dm-5.jpg" width="1706" height="730" loading="lazy" alt="DailyMonk banner: Best plant-based protein powders, a guide for beginners">
+                    <img src="assets/web/dm-6.jpg" width="1706" height="730" loading="lazy" alt="DailyMonk banner: The power of superfoods protein">
+                    <img src="assets/web/dm-7.jpg" width="1706" height="730" loading="lazy" alt="DailyMonk banner: Protein powder for kids, zero sugar options">
+                    <img src="assets/web/dm-8.jpg" width="1706" height="730" loading="lazy" alt="DailyMonk banner: Why fiber matters in your protein powder">
+                </div>
+            </article>
+
+            <article class="project-card reveal">
+                <div class="project-meta">
+                    <span class="section-tag">Amazon Brand Store</span>
+                    <h3>iCosmétiques</h3>
+                    <p>Designed a clean, clinical Amazon Brand Store for a dermatology-first haircare brand. The page builds
+                        trust in sequence: founder credentials, key ingredients, 28-day results and a simple three-step
+                        routine.</p>
+                </div>
+                <div class="store-frame light">
+                    <img src="assets/web/icos-1-hero.jpg" width="2400" height="480" loading="lazy" alt="iCosmétiques hero: Dermatology-First Trichology, 45+ years of medical R&amp;D">
+                    <img src="assets/web/icos-2-proof.jpg" width="2400" height="480" loading="lazy" alt="Founder credentials and dermatological safety banner">
+                    <img src="assets/web/icos-3-ingredients.jpg" width="2400" height="480" loading="lazy" alt="Key ingredients and formulation claims banner">
+                    <img src="assets/web/icos-4-results.jpg" width="2400" height="480" loading="lazy" alt="Day 1 to Day 28 hair repair progression banner">
+                    <img src="assets/web/icos-5-routine.jpg" width="2400" height="480" loading="lazy" alt="Three-step haircare routine banner">
+                </div>
+            </article>
+
+        </section>
+
+        <!-- 02 · GRAPHIC DESIGN -->
+        <section id="graphic" class="section" data-title="GRAPHIC DESIGN">
+            <header class="section-head reveal">
+                <span class="section-index">02</span>
+                <h2>Graphic Design</h2>
+                <p>Posters, event campaigns and motion.</p>
+            </header>
+
+            <div class="poster-grid reveal">
+                <figure class="poster">
+                    <img src="assets/web/gd-poster1.jpg" width="1280" height="1600" loading="lazy" alt="All About Anxiety Bangalore concert poster">
+                    <figcaption>AAA: Bangalore</figcaption>
+                </figure>
+                <figure class="poster motion-preview">
+                    <div class="media">
+                        <img src="assets/poster4.jpg" width="900" height="1600" loading="lazy" alt="Hacktober poster" class="preview-img">
+                        <video src="assets/motion-graphics.mp4" class="preview-video" loop muted playsinline preload="none"></video>
+                    </div>
+                    <figcaption>Hacktober · hover for motion</figcaption>
+                </figure>
+                <figure class="poster">
+                    <img src="assets/poster2.jpg" width="475" height="633" loading="lazy" alt="GDGC recruitment poster">
+                    <figcaption>GDGC Recruitment</figcaption>
+                </figure>
+                <figure class="poster">
+                    <img src="assets/web/gd-poster3.jpg" width="1200" height="1078" loading="lazy" alt="Vidya Vox NYE 2025 at UDC Dallas poster">
+                    <figcaption>UDC: Dallas</figcaption>
+                </figure>
+                <figure class="poster">
+                    <img src="assets/web/gd-flyer.png" width="900" height="1600" loading="lazy" alt="Display flyer">
+                    <figcaption>Display Flyer</figcaption>
+                </figure>
+            </div>
+
+            <div class="banner-stack reveal">
+                <figure class="poster">
+                    <img src="assets/web/gd-banner1.jpg" width="2000" height="1000" loading="lazy" alt="Avinya CSIT event banner">
+                    <figcaption>Avinya CSIT</figcaption>
+                </figure>
+                <figure class="poster">
+                    <img src="assets/web/gd-banner2.jpg" width="2400" height="609" loading="lazy" alt="MLRIT Integration banner">
+                    <figcaption>MLRIT Integration</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 03 · ABOUT ME -->
+        <section id="about" class="section" data-title="ABOUT ME">
+            <header class="section-head reveal">
+                <span class="section-index">03</span>
+                <h2>About Me</h2>
+                <p>Product design, visual design and AI/ML engineering.</p>
+            </header>
+
+            <div class="glass about-intro reveal">
+                <div>
+                    <h3 class="about-name">Nonith Rao</h3>
+                    <p class="about-role">Product &amp; Visual Designer · AI/ML Engineer · Web &amp; App Developer</p>
+                    <p class="about-summary">Creative product and visual designer with nearly two years of experience crafting
+                        brand visuals, website and e-commerce design, motion graphics and scalable UI systems. On the
+                        engineering side: AI workflows, automation pipelines, conversational bots and SwiftUI apps.</p>
+                </div>
+                <div class="about-contact">
+                    <a class="contact-btn" href="mailto:nonithrao@icloud.com"><span>Email</span>nonithrao@icloud.com</a>
+                    <a class="contact-btn" href="tel:+918309406465"><span>Phone</span>+91 83094 06465</a>
+                </div>
+            </div>
+
+            <div class="about-grid">
+                <div class="glass reveal">
+                    <h4 class="card-title">Experience</h4>
+                    <ol class="timeline">
+                        <li class="tl-item">
+                            <div class="tl-head"><span class="tl-role">Product Designer &amp; AI/ML Engineer</span></div>
+                            <span class="tl-org">Walnut Folks Group</span>
+                            <ul class="tl-points">
+                                <li>Product and visual design for IBM, Vedantu, Groww and Truecaller.</li>
+                                <li>Conversion-focused UI systems, campaign creatives and landing pages.</li>
+                                <li>AI/ML workflows for smart layer resizing, SAM Vision vectorization and PSD-to-Figma XML handoff, plus Hugging Face fine-tuning.</li>
+                            </ul>
+                        </li>
+                        <li class="tl-item">
+                            <div class="tl-head"><span class="tl-role">Co-Founder &amp; AI Engineer</span></div>
+                            <span class="tl-org">Trapcult · AI Schedule Organization</span>
+                            <ul class="tl-points">
+                                <li>AI-powered artist scheduling and management platform for a leading Hyderabad-based artist management company.</li>
+                                <li>Meta Messenger and WhatsApp bots automating bookings, scheduling and customer support.</li>
+                                <li>Text-to-SQL pipeline for querying bookings and operations in plain language.</li>
+                            </ul>
+                        </li>
+                        <li class="tl-item">
+                            <div class="tl-head"><span class="tl-role">UI/UX Designer &amp; iOS Developer</span><span class="tl-date">Sep 2025 – Jan 2026</span></div>
+                            <span class="tl-org">Resspro</span>
+                            <ul class="tl-points">
+                                <li>Mobile-first medical platform for appointment booking and patient workflows.</li>
+                                <li>High-fidelity UI, interactive prototypes and SwiftUI iOS interfaces.</li>
+                            </ul>
+                        </li>
+                        <li class="tl-item">
+                            <div class="tl-head"><span class="tl-role">Lead Designer</span><span class="tl-date">Present</span></div>
+                            <span class="tl-org">GDGC · Google Developer Group Campus</span>
+                            <ul class="tl-points">
+                                <li>Leads UI/UX, graphic design and visual communication for technical events, hackathons and campaigns.</li>
+                                <li>Reusable templates and visual systems that keep campus-wide events consistent.</li>
+                            </ul>
+                        </li>
+                        <li class="tl-item">
+                            <div class="tl-head"><span class="tl-role">Graphic &amp; Visual Designer</span></div>
+                            <span class="tl-org">All About Anxiety · Vidya Vox NYE 2025</span>
+                            <ul class="tl-points">
+                                <li>Branding, posters and social campaigns for the All About Anxiety concert in Bangalore.</li>
+                                <li>Large-scale event creatives for Vidya Vox NYE 2025 at UDC Dallas.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="about-side">
+                    <div class="glass reveal">
+                        <h4 class="card-title">Design Skills</h4>
+                        <div class="skill-category">
+                            <h5>Product Design</h5>
+                            <div class="skill-chips"><span>Wireframing</span><span>Interaction Design</span><span>User Flows</span><span>Prototyping</span></div>
+                        </div>
+                        <div class="skill-category">
+                            <h5>Visual Design</h5>
+                            <div class="skill-chips"><span>Brand Identity</span><span>Campaign Creatives</span><span>Layout Systems</span><span>Typography</span></div>
+                        </div>
+                        <div class="skill-category">
+                            <h5>Web &amp; E-commerce</h5>
+                            <div class="skill-chips"><span>Landing Pages</span><span>Website Banners</span><span>Amazon Brand Stores</span></div>
+                        </div>
+                        <div class="skill-category">
+                            <h5>Tools</h5>
+                            <div class="skill-chips"><span>Figma</span><span>Photoshop</span><span>Illustrator</span><span>After Effects</span><span>Premiere Pro</span></div>
+                        </div>
+                        <div class="skill-category">
+                            <h5>AI &amp; Workflow</h5>
+                            <div class="skill-chips"><span>Generative Design Tools</span><span>AI-assisted Image Generation</span></div>
+                        </div>
+                    </div>
+
+                    <div class="glass reveal">
+                        <h4 class="card-title">Education</h4>
+                        <div class="edu">
+                            <span class="edu-school">MLR Institute of Technology</span>
+                            <span class="edu-degree">B.Tech, Computer Science &amp; IT</span>
+                            <span class="edu-years">2023 – 2027</span>
+                        </div>
+                    </div>
+
+                    <div class="glass reveal">
+                        <h4 class="card-title">Achievements</h4>
+                        <ul class="achievements">
+                            <li><strong>Smart India Hackathon 2025</strong><span>College-level winner with an AI-driven scheduling and automation solution.</span></li>
+                            <li><strong>HackerRank Python · 5 Star</strong><span>Five-star rating in Python problem solving.</span></li>
+                            <li><strong>Google Cloud Study Jams 2025–26</strong><span>Compute, Cloud Storage, Pub/Sub, API Gateway, Looker, Dataplex, Cloud Functions, App Engine, Vertex AI, Gemini and Streamlit.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass wide reveal">
+                    <h4 class="card-title">Technical Skills</h4>
+                    <div class="tech-skills-grid">
+                        <div class="skill-category">
+                            <h5>Languages</h5>
+                            <div class="skill-chips"><span>Python</span><span>C</span><span>JavaScript</span><span>HTML</span><span>CSS</span></div>
+                        </div>
+                        <div class="skill-category">
+                            <h5>Frameworks &amp; Libraries</h5>
+                            <div class="skill-chips"><span>SwiftUI</span><span>Pillow</span><span>SAM Vision</span><span>Hugging Face</span></div>
+                        </div>
+                        <div class="skill-category">
+                            <h5>Development</h5>
+                            <div class="skill-chips"><span>Web Development</span><span>iOS Development</span><span>API Development</span><span>Frontend Systems</span><span>Responsive UI</span><span>Backend Integration</span></div>
+                        </div>
+                        <div class="skill-category">
+                            <h5>AI &amp; Automation</h5>
+                            <div class="skill-chips"><span>AI Model Training</span><span>Fine-Tuning</span><span>ML Pipelines</span><span>Python Automation</span><span>Meta &amp; WhatsApp Bots</span><span>Text-to-SQL</span><span>Conversational AI</span><span>Layer Scraping</span><span>Smart Layer Resizing</span><span>SAM Vision Vectorization</span><span>PSD-to-Figma XML</span></div>
+                        </div>
+                        <div class="skill-category">
+                            <h5>Cloud &amp; Tools</h5>
+                            <div class="skill-chips"><span>Google Cloud</span><span>Kubernetes</span><span>Firebase</span><span>Generative AI</span><span>Data Engineering</span><span>Xcode</span></div>
+                        </div>
+                        <div class="skill-category">
+                            <h5>Languages Known</h5>
+                            <div class="skill-chips"><span>English</span><span>Telugu</span><span>Hindi</span><span>Kannada</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass wide reveal">
+                    <h4 class="card-title">Projects</h4>
+                    <div class="project-list">
+                        <div class="mini-project">
+                            <h5>Layer Forge</h5>
+                            <p>AI/ML layer automation trained on design data: smart layer detection, scraping and layout adaptation for scalable creative production.</p>
+                            <span class="badge">In testing</span>
+                        </div>
+                        <div class="mini-project">
+                            <h5>SAM Image Vectorization</h5>
+                            <p>SAM Vision segmentation and vectorization that separates objects and sorts creative assets automatically.</p>
+                        </div>
+                        <div class="mini-project">
+                            <h5>Scheduling Optimization</h5>
+                            <p>Reinforcement-learning system for intelligent scheduling and resource allocation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer reveal">
+            <p>Let's work together</p>
+            <a class="footer-mail" href="mailto:nonithrao@icloud.com">nonithrao@icloud.com</a>
+            <small>© 2026 Nonith Rao</small>
+        </footer>
+    </main>
 
     <div id="frosted-note" class="glass-note">Website does not represent final version</div>
 
-    <audio id="bgMusic" loop>
-        <source src="assets/music.mp3" type="audio/mpeg">
-    </audio>
     <audio id="clickSound">
         <source src="assets/click.mp3" type="audio/mpeg">
     </audio>

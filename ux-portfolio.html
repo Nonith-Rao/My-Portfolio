@@ -123,6 +123,30 @@
     .logo-box img { width: 100%; height: 200px; object-fit: contain; }
     .ui-full-width-stack { display: flex; flex-direction: column; gap: 30px; }
     .ui-full-width-stack img { width: 100%; border-radius: 18px; border: 1px solid #1a1a1a; }
+
+    /* WEB DESIGN (AMAZON BRAND STORES) */
+    .web-wrap { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px; padding-bottom: 60px; }
+    .web-project { display: flex; flex-direction: column; gap: 24px; }
+    .web-kicker { font-size: 12px; font-weight: 900; letter-spacing: 4px; color: #0a84ff; text-transform: uppercase; }
+    .web-project h2 { font-size: 36px; font-weight: 900; letter-spacing: -1px; margin-top: -12px; }
+    .web-project > p { font-size: 17px; line-height: 1.7; color: #ccc; max-width: 780px; }
+    .store-frame { display: flex; flex-direction: column; gap: 6px; padding: 6px; background: #000; border: 1px solid #222; border-radius: 18px; }
+    .store-frame.light { background: #f2f2f2; border-color: #333; }
+    .store-frame img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .store-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .store-tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+    .store-tab { background: #1a1a1a; border: 1px solid #333; border-radius: 50px; padding: 9px 18px; color: #ddd; font-size: 13px; font-weight: 700; transition: 0.2s; }
+    .store-tab:hover { border-color: #0a84ff; color: #fff; }
+    .store-tab.active { background: #0a84ff; border-color: #0a84ff; color: #fff; }
+    .store-panel { display: none; }
+    .store-panel.active { display: flex; }
+    .figma-embed { position: relative; width: 100%; aspect-ratio: 16 / 10; background: #000; border: 1px solid #222; border-radius: 18px; overflow: hidden; }
+    .figma-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .figma-shield { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 64px; background: transparent; border: none; }
+    .figma-shield span { pointer-events: none; background: #0a84ff; color: #fff; font-size: 13px; font-weight: 700; padding: 9px 18px; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+    .figma-embed.live .figma-shield { display: none; }
+    .figma-link { color: #0a84ff; font-size: 14px; font-weight: 700; text-decoration: none; }
+    .figma-link:hover { text-decoration: underline; }
 </style>
 </head>
 
@@ -157,6 +181,7 @@
                 <button onclick="openPage('graphic')">GRAPHIC DESIGN</button>
                 <button onclick="openPage('vector')">VECTOR ILLUSTRATIONS</button>
                 <button onclick="openPage('uiux')">UI/UX</button>
+                <button onclick="openPage('web')">WEB DESIGN</button>
                 <button onclick="openPage('motion')">MOTION GRAPHICS</button>
             </div>
             <button class="about-trigger" onclick="openPage('about')" style="margin-top: 30px; background: rgba(0,0,0,0.6);">About Me</button>
@@ -222,7 +247,13 @@
     <div>
         <h4 class="side-label">SKILLS & TOOLS</h4>
         <p style="font-size: 14px; line-height: 2;"><strong>Design:</strong> Wireframing, Interaction Design, User Flows, Brand Identity, Prototyping<br>
-        <strong>Tools:</strong> Figma, Adobe Photoshop, Illustrator, After Effects, Premiere Pro</p>
+        <strong>Tools:</strong> Figma, Adobe Photoshop, Illustrator, After Effects, Premiere Pro<br>
+        <strong>Languages:</strong> Python, C, JavaScript, HTML, CSS<br>
+        <strong>Frameworks:</strong> SwiftUI, Pillow, SAM Vision, Hugging Face<br>
+        <strong>Development:</strong> Web, iOS &amp; API development, frontend systems, responsive UI, backend integration<br>
+        <strong>AI &amp; Automation:</strong> Model training &amp; fine-tuning, ML pipelines, Python automation, Meta &amp; WhatsApp bots, Text-to-SQL, conversational AI, SAM Vision vectorization, PSD-to-Figma XML<br>
+        <strong>Cloud &amp; Tools:</strong> Google Cloud, Kubernetes, Firebase, Generative AI, Data Engineering, Xcode<br>
+        <strong>Languages Known:</strong> English, Telugu, Hindi, Kannada</p>
         <h4 class="side-label" style="margin-top: 30px;">EDUCATION</h4>
         <p style="font-size: 14px;"><strong>MLR Institute of Technology</strong><br>B.Tech Computer Science & IT (2023 - 2027)</p>
     </div>
@@ -245,6 +276,7 @@
 <button class="side-nav-btn active" onclick="openPage('graphic')">Graphic Design</button>
 <button class="side-nav-btn" onclick="openPage('vector')">Vector Illustrations</button>
 <button class="side-nav-btn" onclick="openPage('uiux')">UI / UX</button>
+<button class="side-nav-btn" onclick="openPage('web')">Web Design</button>
 <button class="side-nav-btn" onclick="openPage('motion')">Motion Graphics</button>
 </aside>
 <main class="content">
@@ -280,6 +312,7 @@
 <button class="side-nav-btn" onclick="openPage('graphic')">Graphic Design</button>
 <button class="side-nav-btn active" onclick="openPage('vector')">Vector Illustrations</button>
 <button class="side-nav-btn" onclick="openPage('uiux')">UI / UX</button>
+<button class="side-nav-btn" onclick="openPage('web')">Web Design</button>
 <button class="side-nav-btn" onclick="openPage('motion')">Motion Graphics</button>
 </aside>
 <main class="content">
@@ -307,6 +340,7 @@
 <button class="side-nav-btn" onclick="openPage('graphic')">Graphic Design</button>
 <button class="side-nav-btn" onclick="openPage('vector')">Vector Illustrations</button>
 <button class="side-nav-btn" onclick="openPage('uiux')">UI / UX</button>
+<button class="side-nav-btn" onclick="openPage('web')">Web Design</button>
 <button class="side-nav-btn active" onclick="openPage('motion')">Motion Graphics</button>
 </aside>
 <main class="content">
@@ -328,6 +362,7 @@
 <button class="side-nav-btn" onclick="openPage('graphic')">Graphic Design</button>
 <button class="side-nav-btn" onclick="openPage('vector')">Vector Illustrations</button>
 <button class="side-nav-btn active" onclick="openPage('uiux')">UI / UX</button>
+<button class="side-nav-btn" onclick="openPage('web')">Web Design</button>
 <button class="side-nav-btn" onclick="openPage('motion')">Motion Graphics</button>
 </aside>
 <main class="content">
@@ -349,10 +384,112 @@
             <img src="assets/respro-dash2.jpg">
         </div>
 
-        <div class="ui-label" style="margin-top: 40px;">E-COMMERCE DESIGN</div>
-        <div class="ui-full-width-stack" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <img src="assets/ecommerce1.jpg">
-            <img src="assets/ecommerce2.jpg">
+    </div>
+    <div class="scroll-note down">SCROLL DOWN ↓</div>
+</main>
+</div>
+</div>
+</section>
+
+<section id="web" class="page">
+<div class="window theme-dark">
+<div class="topbar">
+<div class="dots"><span class="dot red back-btn"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+<h3>Web Design</h3>
+</div>
+<div class="layout">
+<aside class="sidebar">
+<button class="side-nav-btn" onclick="openPage('graphic')">Graphic Design</button>
+<button class="side-nav-btn" onclick="openPage('vector')">Vector Illustrations</button>
+<button class="side-nav-btn" onclick="openPage('uiux')">UI / UX</button>
+<button class="side-nav-btn active" onclick="openPage('web')">Web Design</button>
+<button class="side-nav-btn" onclick="openPage('motion')">Motion Graphics</button>
+</aside>
+<main class="content">
+    <div class="web-wrap">
+        <div class="web-project">
+            <div class="web-kicker">Website Design</div>
+            <h2>DailyMonk</h2>
+            <p>Designed the website banner system for DailyMonk, a plant-protein brand: home page heroes and festive promotions, each built in desktop and mobile versions.</p>
+            <div class="figma-embed">
+                <iframe data-src="https://embed.figma.com/proto/hhtqZhSOByDy0tcofX4Kd8/Untitled?node-id=2001-2245&amp;starting-point-node-id=2001-2245&amp;embed-host=portfolio&amp;scaling=contain&amp;content-scaling=fixed&amp;footer=false" title="DailyMonk website banners in Figma" allowfullscreen></iframe>
+                <button class="figma-shield" type="button"><span>Click to browse the designs</span></button>
+            </div>
+            <a class="figma-link" href="https://www.figma.com/proto/hhtqZhSOByDy0tcofX4Kd8/Untitled?node-id=2001-2245&amp;scaling=contain" target="_blank" rel="noopener">Open full screen in Figma ↗</a>
+        </div>
+
+        <div class="web-project">
+            <div class="web-kicker">Amazon Brand Store</div>
+            <h2>MOSS</h2>
+            <p>Designed the Amazon Brand Store for MOSS, an audio brand: a cinematic homepage plus a dedicated page for every product line, from TWS earbuds and neckbands to cables. Each product page follows the same hero, features and lifestyle flow.</p>
+
+            <div class="ui-label">STORE HOMEPAGE</div>
+            <div class="store-frame">
+                <img src="assets/web/moss-home-hero.jpg" width="2400" height="480" loading="lazy" alt="MOSS store homepage hero: Habit made instinct">
+                <img src="assets/web/moss-home-earpods.jpg" width="2400" height="480" loading="lazy" alt="MOSS earpods category banner">
+                <img src="assets/web/moss-home-compare.jpg" width="2400" height="480" loading="lazy" alt="Echo Endura and Echo Whisper comparison banner">
+                <div class="store-tiles">
+                    <img src="assets/web/moss-tile-endura.jpg" width="1200" height="1200" loading="lazy" alt="Echo Endura product tile">
+                    <img src="assets/web/moss-tile-whisper.jpg" width="1200" height="1200" loading="lazy" alt="Echo Whisper product tile">
+                </div>
+            </div>
+
+            <div class="ui-label" style="margin-top: 30px;">PRODUCT PAGES</div>
+            <div class="store-tabs">
+                <button class="store-tab active" data-tab="moss-endura">Echo Endura</button>
+                <button class="store-tab" data-tab="moss-lume">Echo Lume</button>
+                <button class="store-tab" data-tab="moss-whisper">Echo Whisper</button>
+                <button class="store-tab" data-tab="moss-stride">Echo Stride</button>
+                <button class="store-tab" data-tab="moss-cable">Cable</button>
+            </div>
+            <div class="store-frame store-panel active" id="moss-endura">
+                <img src="assets/web/moss-endura-1.jpg" width="2400" height="480" loading="lazy" alt="Echo Endura page hero">
+                <img src="assets/web/moss-endura-2.jpg" width="2400" height="480" loading="lazy" alt="Echo Endura features: 8mm drivers, 70 hours playtime, quad mic, Bluetooth 5.4">
+                <img src="assets/web/moss-endura-3.jpg" width="2400" height="480" loading="lazy" alt="Echo Endura lifestyle banner: Beyond Sound, Into Sensation">
+                <img src="assets/web/moss-lineup.jpg" width="2400" height="480" loading="lazy" alt="MOSS lineup banner: Crafted for Sound, Tuned for You">
+            </div>
+            <div class="store-frame store-panel" id="moss-lume">
+                <img src="assets/web/moss-lume-1.jpg" width="2400" height="480" loading="lazy" alt="Echo Lume page hero">
+                <img src="assets/web/moss-lume-2.jpg" width="2400" height="480" loading="lazy" alt="Echo Lume features: IPX5, Bluetooth 6.0, ENC for clear calls, 45 hours playtime">
+                <img src="assets/web/moss-lume-3.jpg" width="2400" height="480" loading="lazy" alt="Echo Lume lifestyle banner: Compact form, Sound Amplified">
+                <img src="assets/web/moss-lineup.jpg" width="2400" height="480" loading="lazy" alt="MOSS lineup banner: Crafted for Sound, Tuned for You">
+            </div>
+            <div class="store-frame store-panel" id="moss-whisper">
+                <img src="assets/web/moss-whisper-1.jpg" width="2400" height="480" loading="lazy" alt="Echo Whisper page hero">
+                <img src="assets/web/moss-whisper-2.jpg" width="2400" height="480" loading="lazy" alt="Echo Whisper features: 10mm drivers, 60 hours playtime, IPX5, 360 spatial audio">
+                <img src="assets/web/moss-whisper-3.jpg" width="2400" height="480" loading="lazy" alt="Echo Whisper lifestyle banner: Endless Depth, Quiet Sound">
+                <img src="assets/web/moss-lineup.jpg" width="2400" height="480" loading="lazy" alt="MOSS lineup banner: Crafted for Sound, Tuned for You">
+            </div>
+            <div class="store-frame store-panel" id="moss-stride">
+                <img src="assets/web/moss-stride-1.jpg" width="2400" height="480" loading="lazy" alt="Echo Stride neckband page hero">
+                <img src="assets/web/moss-stride-2.jpg" width="2400" height="480" loading="lazy" alt="Echo Stride features: IPX5, Bluetooth 6.0, ENC for clear calls, 45 hours playtime">
+                <img src="assets/web/moss-stride-3.jpg" width="2400" height="480" loading="lazy" alt="Echo Stride lifestyle banner: Wear Light, Wander Far">
+            </div>
+            <div class="store-frame store-panel" id="moss-cable">
+                <img src="assets/web/moss-cable-1.jpg" width="2400" height="480" loading="lazy" alt="MOSS Cable page hero">
+                <img src="assets/web/moss-cable-2.jpg" width="2400" height="480" loading="lazy" alt="MOSS Cable features: 1.2m, extended frame protection, 480 Mbps, 65W quick charge">
+                <img src="assets/web/moss-cable-3.jpg" width="2400" height="480" loading="lazy" alt="MOSS Cable lifestyle banner: Ready To Go, Before You Know It">
+            </div>
+
+            <div class="ui-label" style="margin-top: 30px;">CAMPAIGN CREATIVES · FIGMA</div>
+            <div class="figma-embed">
+                <iframe data-src="https://embed.figma.com/proto/CqC7FoldO2GV7TDWKq0AL8/Untitled?node-id=2001-309&amp;starting-point-node-id=2001-309&amp;embed-host=portfolio&amp;scaling=contain&amp;content-scaling=fixed&amp;footer=false" title="MOSS campaign creatives in Figma" allowfullscreen></iframe>
+                <button class="figma-shield" type="button"><span>Click to browse the designs</span></button>
+            </div>
+            <a class="figma-link" href="https://www.figma.com/proto/CqC7FoldO2GV7TDWKq0AL8/Untitled?node-id=2001-309&amp;scaling=contain" target="_blank" rel="noopener">Open full screen in Figma ↗</a>
+        </div>
+
+        <div class="web-project">
+            <div class="web-kicker">Amazon Brand Store</div>
+            <h2>iCosmétiques</h2>
+            <p>Designed a clean, clinical Amazon Brand Store for a dermatology-first haircare brand. The page builds trust in sequence: founder credentials, key ingredients, 28-day results and a simple three-step routine.</p>
+            <div class="store-frame light">
+                <img src="assets/web/icos-1-hero.jpg" width="2400" height="480" loading="lazy" alt="iCosmétiques hero: Dermatology-First Trichology, 45+ years of medical R&amp;D">
+                <img src="assets/web/icos-2-proof.jpg" width="2400" height="480" loading="lazy" alt="Founder credentials and dermatological safety banner">
+                <img src="assets/web/icos-3-ingredients.jpg" width="2400" height="480" loading="lazy" alt="Key ingredients and formulation claims banner">
+                <img src="assets/web/icos-4-results.jpg" width="2400" height="480" loading="lazy" alt="Day 1 to Day 28 hair repair progression banner">
+                <img src="assets/web/icos-5-routine.jpg" width="2400" height="480" loading="lazy" alt="Three-step haircare routine banner">
+            </div>
         </div>
     </div>
     <div class="scroll-note down">SCROLL DOWN ↓</div>
@@ -400,11 +537,17 @@
         
         if (target) {
             target.classList.add("active");
+
+            // Load Figma embeds on this page only once it's opened
+            target.querySelectorAll('iframe[data-src]').forEach(frame => {
+                frame.src = frame.dataset.src;
+                frame.removeAttribute('data-src');
+            });
             
             // Hide Background on Dark Theme Pages
             const globalBg = document.getElementById("global-bg");
             if (globalBg) {
-                if (id === 'uiux') globalBg.style.opacity = "0";
+                if (id === 'uiux' || id === 'web') globalBg.style.opacity = "0";
                 else globalBg.style.opacity = "1";
             }
 
@@ -419,6 +562,30 @@
             btn.classList.toggle("active", btn.getAttribute("onclick").includes(id));
         });
     }
+
+    // FIGMA EMBEDS: click to interact, so page scrolling isn't trapped inside them
+    document.querySelectorAll('.figma-embed').forEach(embed => {
+        const shield = embed.querySelector('.figma-shield');
+        if (shield) shield.addEventListener('click', () => embed.classList.add('live'));
+        embed.addEventListener('mouseleave', () => embed.classList.remove('live'));
+    });
+
+    // WEB DESIGN: STORE PAGE TABS
+    document.querySelectorAll('.store-tabs').forEach(tabBar => {
+        const tabs = tabBar.querySelectorAll('.store-tab');
+        const panels = tabBar.parentElement.querySelectorAll('.store-panel');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.toggle('active', t === tab));
+                panels.forEach(p => p.classList.toggle('active', p.id === tab.dataset.tab));
+            });
+        });
+    });
+
+    // DEEP LINK: ux-portfolio.html#web opens that window directly
+    const startPage = window.location.hash.slice(1);
+    const startEl = startPage && document.getElementById(startPage);
+    if (startEl && startEl.classList.contains('page')) openPage(startPage);
 
     // MOTION HOVER LOGIC
     document.querySelectorAll('.motion-preview').forEach(container => {

@@ -1,169 +1,119 @@
+// Scroll-reveal styles only apply when this script runs
+document.documentElement.classList.add('js');
+
+// Always open on the home screen: drop any #section from the URL and any remembered scroll position
+if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+window.scrollTo(0, 0);
+
 // --- EXACT 5 SECOND LOADING SCRIPT ---
 window.addEventListener('load', () => {
     const fill = document.getElementById('loading-fill');
-    
-    // Tiny delay to let the CSS transition catch the width change from 0 to 100
+    const loader = document.getElementById('loader');
+    window.scrollTo(0, 0);
+
+    // Tiny delay so the CSS transition catches the width change from 0 to 100
     setTimeout(() => {
         if (fill) fill.style.width = '100%';
     }, 100);
-    
-    // Wait exactly 5000 milliseconds (5 seconds) before removing loader
+
+    // Wait exactly 5000 milliseconds (5 seconds) before removing the loader
     setTimeout(() => {
-        const loader = document.getElementById('loader');
-        const landingUI = document.getElementById('landing-ui');
-        
+        window.scrollTo(0, 0);
         if (loader) loader.classList.add('hidden');
-        
         setTimeout(() => {
-            if (landingUI) landingUI.classList.add('loaded');
+            document.body.classList.remove('is-loading');
+            document.body.classList.add('loaded');
         }, 500);
-        
         setTimeout(() => {
             if (loader) loader.style.display = 'none';
         }, 2500);
-        
-    }, 5000); 
+    }, 5000);
 });
 
-// --- REAL-TIME CLOCK & DATE LOGIC ---
+// --- REAL-TIME CLOCK & DATE (HUD) ---
 function updateTopBar() {
     const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    const timeString = `${hours}:${minutes}:${seconds}`;
-
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    const dateString = `${year}.${month}.${day}`;
-
+    const pad = (n) => String(n).padStart(2, '0');
     const timeEl = document.getElementById('real-time');
     const dateEl = document.getElementById('real-date');
-
-    if (timeEl) timeEl.textContent = timeString;
-    if (dateEl) dateEl.textContent = dateString;
+    if (timeEl) timeEl.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    if (dateEl) dateEl.textContent = `${now.getFullYear()}.${pad(now.getMonth() + 1)}.${pad(now.getDate())}`;
 }
-
 setInterval(updateTopBar, 1000);
-updateTopBar(); 
+updateTopBar();
 
-const innerHUD = document.getElementById('inner-hud');
-const blurOverlay = document.getElementById('bg-blur-overlay');
-const pageTitleEl = document.getElementById('current-page-title');
-const music = document.getElementById("bgMusic");
-const clickSound = document.getElementById("clickSound");
+// --- CUSTOM CURSOR ---
 const cursor = document.querySelector('.liquid-cursor');
-const bgContainer = document.getElementById('global-bg');
-
-// --- INSTANT CLICK LOGIC FOR UX PORTFOLIO ---
-const uxSwitchBtn = document.getElementById('ux-switch-btn');
-
-if(uxSwitchBtn) {
-    uxSwitchBtn.addEventListener('click', () => {
-        window.location.href = "ux-portfolio.html"; 
-    });
-}
-
-// --- MOUSE MOVEMENT ---
 document.addEventListener('mousemove', (e) => {
-    const x = e.clientX;
-    const y = e.clientY;
-    
-    cursor.style.left = x + 'px';
-    cursor.style.top = y + 'px';
-
-    bgContainer.style.setProperty('--x', x + 'px');
-    bgContainer.style.setProperty('--y', y + 'px');
-    bgContainer.classList.add('active');
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
 });
-
-// --- AUDIO LOGIC ---
-function playClick() {
-    clickSound.currentTime = 0;
-    clickSound.play().catch(() => {}); 
-}
-
-function startMusic() {
-    if (music.paused) {
-        music.play().catch(() => {}); 
-    }
-}
-
-document.addEventListener("click", (e) => {
-    if ((e.target.tagName === "BUTTON" || e.target.classList.contains("hud-link") || e.target.tagName === "A") && !e.target.classList.contains("locked")) {
-        playClick();
-    }
-});
-
-// --- MASTER NAVIGATION LOGIC ---
-const pageTitles = {
-    'about': 'ABOUT ME',
-    'graphic': 'GRAPHIC DESIGN',
-    'vector': 'VECTOR ILLUSTRATIONS',
-    'uiux': 'UI/UX DESIGN',
-    'motion': 'MOTION GRAPHICS'
-};
-
-function openPage(id) {
-    if (id === 'motion') return; // Locked
-
-    startMusic();
-    const pages = document.querySelectorAll(".page");
-    const landingUI = document.getElementById('landing-ui');
-
-    if (id === 'landing' || !id) {
-        landingUI.classList.add('active');
-        innerHUD.classList.remove('active');
-        blurOverlay.classList.remove('active');
-    } else {
-        landingUI.classList.remove('active');
-        innerHUD.classList.add('active');
-        blurOverlay.classList.add('active');
-        
-        if(pageTitleEl && pageTitles[id]) {
-            pageTitleEl.textContent = pageTitles[id];
-        }
-    }
-
-    pages.forEach(p => p.classList.remove("active"));
-    
-    const target = document.getElementById(id);
-    if (target && id !== 'landing') {
-        setTimeout(() => {
-            target.classList.add("active");
-        }, 100);
-    }
-}
-window.openPage = openPage;
-
-// --- RIPPLE LOOP ---
-function triggerRipple() {
-    bgContainer.classList.add('ripple-active');
-    setTimeout(() => {
-        bgContainer.classList.remove('ripple-active');
-    }, 2000);
-}
-setInterval(triggerRipple, 3000);
-
-// --- CURSOR HOVER STATES ---
-document.querySelectorAll('button, .hud-link, img, a, #ux-switch-btn').forEach(el => {
-    el.addEventListener('mouseenter', (e) => {
-        if(!e.target.classList.contains('locked')){
-            cursor.classList.add('active');
-        }
-    });
+document.querySelectorAll('a, button, img, video').forEach((el) => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('active'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
 });
 
-// --- HOVER VIDEOS FOR MOTION PREVIEW ---
-document.querySelectorAll('.motion-preview').forEach(container => {
+// --- CLICK SOUND ---
+const clickSound = document.getElementById('clickSound');
+document.addEventListener('click', (e) => {
+    if (clickSound && e.target.closest('a, button')) {
+        clickSound.currentTime = 0;
+        clickSound.play().catch(() => {});
+    }
+});
+
+// --- IN-PAGE LINKS: smooth scroll without writing #section into the URL (so a reload starts at home) ---
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+// --- HUD TITLE FOLLOWS THE SECTION IN VIEW ---
+const sectionTitle = document.getElementById('current-section');
+function setSectionTitle(title) {
+    if (!sectionTitle || sectionTitle.textContent === title) return;
+    sectionTitle.style.opacity = '0';
+    setTimeout(() => {
+        sectionTitle.textContent = title;
+        sectionTitle.style.opacity = '1';
+    }, 250);
+}
+// Nested blocks (like Figma Designs inside Website Design) win over their parent section
+const activeBlocks = new Set();
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) activeBlocks.add(entry.target);
+        else activeBlocks.delete(entry.target);
+    });
+    const blocks = [...activeBlocks];
+    const innermost = blocks.find((el) => !blocks.some((other) => other !== el && el.contains(other)));
+    if (innermost) setSectionTitle(innermost.dataset.title);
+}, { rootMargin: '-45% 0px -54% 0px' });
+document.querySelectorAll('[data-title]').forEach((section) => sectionObserver.observe(section));
+
+// --- SCROLL REVEAL ---
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+// --- HOVER VIDEO FOR MOTION PREVIEW ---
+document.querySelectorAll('.motion-preview').forEach((container) => {
     const video = container.querySelector('.preview-video');
     container.addEventListener('mouseenter', () => {
-        video.play().catch(e => console.log("Video play interrupted"));
+        video.play().catch(() => {});
     });
     container.addEventListener('mouseleave', () => {
         video.pause();
-        video.currentTime = 0; 
+        video.currentTime = 0;
     });
 });

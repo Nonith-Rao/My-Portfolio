@@ -103,10 +103,6 @@ body.loaded .tech-top-box { transform: translateY(0); opacity: 1; }
 .box-center h2 { font-size: 16px; font-weight: 800; letter-spacing: 6px; line-height: 1; white-space: nowrap; color: var(--text); text-transform: uppercase; transition: opacity 0.25s ease; }
 .hud-link { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; letter-spacing: 1px; color: var(--text); text-transform: uppercase; transition: color 0.3s; }
 .hud-link:hover { color: var(--orange); }
-.hud-tab { display: inline-flex; align-items: center; gap: 8px; margin-top: -7px; padding: 6px 14px; border: 1px solid rgba(245, 130, 32, 0.7); border-radius: 50px; background: rgba(245, 130, 32, 0.12); color: var(--orange); }
-.hud-tab::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #0acf83; box-shadow: 0 0 8px rgba(10, 207, 131, 0.8); }
-.hud-tab:hover { background: var(--orange); color: #000; }
-#figma { scroll-margin-top: 100px; }
 
 /* ========================================================
    HERO
@@ -292,6 +288,7 @@ body.loaded .scroll-cue { opacity: 1; animation: bounceDown 2s ease-in-out 2.2s 
     .tech-box-base, .tech-box-inner { clip-path: none; height: 56px; }
     .tech-content { padding: 18px 20px 0; }
     .box-left { display: none; }
+    .box-right { margin-left: auto; }
     .box-center { top: 21px; left: 20px; transform: none; }
     .box-center h2 { font-size: 12px; letter-spacing: 3px; }
     .hero-text { right: 6%; }
@@ -304,7 +301,6 @@ body.loaded .scroll-cue { opacity: 1; animation: bounceDown 2s ease-in-out 2.2s 
     .project-meta h3 { font-size: 32px; }
     .about-name { font-size: 40px; }
     .store-frame.grid-2 { grid-template-columns: 1fr; }
-    .box-center { display: none; }
     .figma-showcase { padding: 20px; }
     .figma-grid { grid-template-columns: 1fr; }
     .tech-skills-grid { columns: 1; }
